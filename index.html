@@ -1,0 +1,150 @@
+		<!DOCTYPE HTML>
+		<html lang="en">
+		<!--
+			Astral by HTML5 UP
+			html5up.net | @ajlkn
+			Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+		-->
+			<head>
+				<title>FUDPLUG by Safe Sats</title>
+				<meta charset="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+				<link rel="stylesheet" href="assets/css/main.css" />
+				<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+				<script>
+					function sendMessage() {
+						// Get the user's message
+						var message = document.getElementById("chatMessage").value;
+
+						// Define your authorization token
+						var authToken = '07aa40d0330bd97ba25e7b87093b510c'; // Replace with your actual MagickML API key
+
+						// Define the proxy server endpoint
+						var proxyUrl = 'http://localhost:3000/api';
+
+						// Make a request to the proxy server
+						fetch(proxyUrl, {
+							method: 'POST',
+							headers: {
+								'Authorization': authToken,
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify({
+								content: message,
+								agentId: 'fc213231-8e79-4329-bd18-45ff993c4809' // Replace with your actual agentId
+							}),
+						})
+						.then(response => response.json())
+						.then(data => {
+							// Process the response from the MagickML API and update the UI
+							console.log('MagickML Response:', data);
+
+							// Display the response message in the message container
+							var messageContainer = document.getElementById("message-container");
+							messageContainer.innerHTML = data.message;
+						})
+						.catch((error) => {
+							console.error('Error:', error);
+						});
+}
+
+				  </script>
+				
+				
+			</head>
+			<body class="is-preload">
+		
+				<!-- Wrapper-->
+					<div id="wrapper">
+		
+						<!-- Nav -->
+							<nav id="nav">
+								<a href="#" class="icon solid fa-home"><span>Home</span></a>
+								<a href="#work" class="icon solid fa-folder"><span>Work</span></a>
+								<a href="#contact" class="icon solid fa-envelope"><span>Contact</span></a>
+								<a href="https://twitter.com/Safe_Sats" class="icon brands fa-twitter"><span>Twitter</span></a>
+							</nav>
+		
+						<!-- Main -->
+							<div id="main">
+		
+								<!-- Me -->
+									<article id="home" class="panel intro">
+										<header>
+											<h1>FUDPLUG</h1>
+											<p>by Safe Sats</p>
+										</header>
+										<a href="#work" class="jumplink pic">
+											<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+											<img src="images/me.png" alt="" />
+										</a>
+									</article>
+		
+								<!-- Work -->0
+									<article id="work" class="panel">
+										<header>
+											<h2>Try Me</h2>
+										</header>
+										<p>
+											Let me plug the FUD.
+										</p>
+										<section>
+											<form id="chatForm" action="#" method="post">
+												<div class="col-12">
+													<div id="chat-container">
+														<!-- Chat messages will be displayed here -->
+													</div>
+													<input type="text" id="chatMessage" placeholder="Type your message here" />
+													<input type="button" value="Send Message" onclick="sendMessage()" />
+												</div>
+											</form>
+										</section>
+									</article>
+		
+								<!-- Contact -->
+									<article id="contact" class="panel">
+										<header>
+											<h2>Contact Me</h2>
+										</header>
+										<form action="#" method="post">
+											<div>
+												<div class="row">
+													<div class="col-6 col-12-medium">
+														<input type="text" name="name" placeholder="Name" />
+													</div>
+													<div class="col-6 col-12-medium">
+														<input type="text" name="email" placeholder="Email" />
+													</div>
+													<div class="col-12">
+														<input type="text" name="subject" placeholder="Subject" />
+													</div>
+													<div class="col-12">
+														<textarea name="message" placeholder="Message" rows="6"></textarea>
+													</div>
+													<div class="col-12">
+														<input type="submit" value="Send Message" />
+													</div>
+												</div>
+											</div>
+										</form>
+									</article>
+							</div>
+		
+						<!-- Footer -->
+							<div id="footer">
+								<ul class="copyright">
+									<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								</ul>
+							</div>
+		
+					</div>
+		
+				<!-- Scripts -->
+					<script src="assets/js/jquery.min.js"></script>
+					<script src="assets/js/browser.min.js"></script>
+					<script src="assets/js/breakpoints.min.js"></script>
+					<script src="assets/js/util.js"></script>
+					<script src="assets/js/main.js"></script>
+		
+			</body>
+		</html>
