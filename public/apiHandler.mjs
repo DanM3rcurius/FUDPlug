@@ -9,14 +9,17 @@ const MAGICK_API_URL = process.env.MAGICK_API_URL;
 
 
 const server = http.createServer((req, res) => {
-  if (req.method === 'GET') {
-    serveStaticFile(req, res);
-  } else if (req.method === 'POST') {
-    handlePostRequest(req, res);
-  } else {
-    res.writeHead(501, { 'Content-Type': 'text/plain' });
-    res.end('Unsupported method');
-  }
+  // Enable CORS for all routes
+  cors()(req, res, () => {
+    if (req.method === 'GET') {
+      serveStaticFile(req, res);
+    } else if (req.method === 'POST') {
+      handlePostRequest(req, res);
+    } else {
+      res.writeHead(501, { 'Content-Type': 'text/plain' });
+      res.end('Unsupported method');
+    }
+  });
 });
 
 function handlePostRequest(req, res) {
@@ -44,9 +47,12 @@ function processApiRequest(req, res) {
 
       interactWithChatbot(chatMessage)
         .then(apiResponse => {
+          // Set CORS headers explicitly
           res.writeHead(200, {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.MAGICK_API_KEY}`
+            'Access-Control-Allow-Origin': '*', // Allow requests from any origin
+            'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
           });
           res.end(JSON.stringify({ message: apiResponse }));
         })
@@ -65,10 +71,9 @@ function processApiRequest(req, res) {
 
 function interactWithChatbot(chatMessage) {
   const apiUrl = `${process.env.MAGICK_API_URL}/${process.env.MAGICK_AGENT_ID}?apiKey=${process.env.MAGICK_API_KEY}`;
-;
 
   const requestBody = {
-    id: process.env.MAGICK_AGENT_ID,,
+    id: process.env.MAGICK_AGENT_ID,
     apiKey: process.env.MAGICK_API_KEY,
     content: chatMessage
   };
@@ -77,7 +82,6 @@ function interactWithChatbot(chatMessage) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-      'Access-Control-Allow-Origin': '*' // Allow requests from any origin (adjust as needed)
     },
     body: JSON.stringify(requestBody)
   })
