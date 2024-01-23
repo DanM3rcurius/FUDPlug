@@ -2,6 +2,7 @@ import http from 'http';
 import dotenv from 'dotenv';
 dotenv.config();
 import fetch from 'node-fetch';
+import cors from 'cors'; 
 const MAGICK_API_KEY = process.env.MAGICK_API_KEY; 
 const MAGICK_AGENT_ID = process.env.MAGICK_AGENT_ID; 
 const MAGICK_API_URL = process.env.MAGICK_API_URL; 
@@ -43,7 +44,10 @@ function processApiRequest(req, res) {
 
       interactWithChatbot(chatMessage)
         .then(apiResponse => {
-          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.writeHead(200, {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.MAGICK_API_KEY}`
+          });
           res.end(JSON.stringify({ message: apiResponse }));
         })
         .catch(error => {
@@ -60,12 +64,12 @@ function processApiRequest(req, res) {
 }
 
 function interactWithChatbot(chatMessage) {
-  const apiUrl = `${process.env.MAGICK_API_URL}/api/${process.env.MAGICK_AGENT_ID}?apiKey=${process.env.MAGICK_API_KEY}`;
+  const apiUrl = `${process.env.MAGICK_API_URL}/${process.env.MAGICK_AGENT_ID}?apiKey=${process.env.MAGICK_API_KEY}`;
 ;
 
   const requestBody = {
-    id: agentId,
-    apiKey: apiKey,
+    id: process.env.MAGICK_AGENT_ID,,
+    apiKey: process.env.MAGICK_API_KEY,
     content: chatMessage
   };
 
@@ -73,6 +77,7 @@ function interactWithChatbot(chatMessage) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
+      'Access-Control-Allow-Origin': '*' // Allow requests from any origin (adjust as needed)
     },
     body: JSON.stringify(requestBody)
   })

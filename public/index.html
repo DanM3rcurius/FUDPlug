@@ -13,42 +13,43 @@
 				<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 				<script>
 					function sendMessage() {
-						// Get the user's message
-						var message = document.getElementById("chatMessage").value;
-
-						// Define your authorization token
-						var authToken = '07aa40d0330bd97ba25e7b87093b510c'; // Replace with your actual MagickML API key
-
-						// Define the proxy server endpoint
-						var proxyUrl = 'http://localhost:3000/api';
-
-						// Make a request to the proxy server
-						fetch(proxyUrl, {
-							method: 'POST',
-							headers: {
-								'Authorization': authToken,
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify({
-								content: message,
-								agentId: 'fc213231-8e79-4329-bd18-45ff993c4809' // Replace with your actual agentId
-							}),
-						})
-						.then(response => response.json())
-						.then(data => {
-							// Process the response from the MagickML API and update the UI
-							console.log('MagickML Response:', data);
-
-							// Display the response message in the message container
-							var messageContainer = document.getElementById("message-container");
-							messageContainer.innerHTML = data.message;
-						})
-						.catch((error) => {
-							console.error('Error:', error);
-						});
-}
-
+					  // Get the user's message
+					  var message = document.getElementById("chatMessage").value;
+				  
+					  // Make a request to the proxy server for sending a message
+					  fetch('http://localhost:3000/api', {
+						method: 'POST',
+						headers: {
+						  'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+						  content: message,
+						  agentId: 'fc213231-8e79-4329-bd18-45ff993c4809' // Replace with your actual agentId
+						}),
+					  })
+					  .then(response => response.json())
+					  .then(data => {
+						// Process the response from the MagickML API and update the UI
+						console.log('MagickML Response:', data);
+				  
+						// Display the response message in the chat container
+						displayMessage(data.message);
+					  })
+					  .catch((error) => {
+						console.error('Error:', error);
+					  });
+					}
+				  
+					function displayMessage(message) {
+					  // Display the received message in the chat container
+					  var messageContainer = document.getElementById("chat-container");
+					  var messageElement = document.createElement("div");
+					  messageElement.className = "chat-message";
+					  messageElement.textContent = message;
+					  messageContainer.appendChild(messageElement);
+					}
 				  </script>
+				  
 				
 				
 			</head>
