@@ -93,7 +93,7 @@ function interactWithChatbot(chatMessage) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': process.env.MAGICK_API_KEY
+      'Authorization': 'Bearer ${process.env.MAGICK_API_KEY}'
     },
     body: JSON.stringify(requestBody)
   })
