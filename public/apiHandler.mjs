@@ -60,46 +60,59 @@ function processApiRequest(req, res) {
           const data = { message: apiResponse };
           if (data && data.message) {
             console.log('MagickML Response:', data.message);
-            // Process and display the response as needed
+
+            // Set CORS headers explicitly
+            res.writeHead(200, {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*', // Allow requests from any origin
+              'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+              'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+            });
+
+            // Send the API response to the client
+            res.end(JSON.stringify({ message: apiResponse }));
           } else {
             console.error('Invalid API response:', data);
+
             // Handle the error or display an appropriate message
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Internal Server Error');
           }
 
           // Continue with the rest of your code...
         })
         .catch(error => {
+          // Handle errors
           console.error('Error processing API request:', error);
-          // Handle the error or display an appropriate message
-        });
-    } catch (error) {
-      console.error('Error parsing JSON:', error);
-      res.writeHead(400, { 'Content-Type': 'text/plain' });
-      res.end('Bad Request');
-    }
-          // Set CORS headers explicitly
-          res.writeHead(200, {
-            'Content-Type': 'application/json',
+
+          // Set CORS headers for error response
+          res.writeHead(500, {
+            'Content-Type': 'text/plain',
             'Access-Control-Allow-Origin': '*', // Allow requests from any origin
             'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
             'Access-Control-Allow-Headers': 'Content-Type, Authorization'
           });
-          res.end(JSON.stringify({ message: apiResponse }));
-        })
-        .catch(error => {
-          // Handle errors
-          console.error('Error processing API request:', error);
-          res.writeHead(500, { 'Content-Type': 'text/plain' });
+
+          // Send an error response to the client
           res.end('Internal Server Error');
         });
     } catch (error) {
-      // Handle parsing errors
       console.error('Error parsing JSON:', error);
-      res.writeHead(400, { 'Content-Type': 'text/plain' });
+
+      // Set CORS headers for bad request
+      res.writeHead(400, {
+        'Content-Type': 'text/plain',
+        'Access-Control-Allow-Origin': '*', // Allow requests from any origin
+        'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+      });
+
+      // Send a bad request response to the client
       res.end('Bad Request');
     }
   });
 }
+
 
 // Interact with the chatbot by retrieving responses through a GET request
 function interactWithChatbot(chatMessage) {
