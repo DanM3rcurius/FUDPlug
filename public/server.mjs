@@ -2,12 +2,6 @@ import http from 'http';
 import { processApiRequest, interactWithChatbot } from './apiHandler.mjs'; // Update the path accordingly
 
 const server = http.createServer((req, res) => {
-  // Allow requests from any origin
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Allow the necessary methods
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  // Allow the necessary headers
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     // Preflight request, respond with success
