@@ -51,7 +51,7 @@ function processApiRequest(req, res) {
   });
 
   req.on('end', () => {
-    console.log('Request body:', body);
+    console.log('Request body:', formatPostRequestBody(body));
 
     try {
       const jsonBody = JSON.parse(body);
@@ -79,6 +79,18 @@ function processApiRequest(req, res) {
       res.end('Bad Request');
     }
   });
+}
+
+function formatPostRequestBody(rawBody) {
+  try {
+    const parsedBody = JSON.parse(rawBody);
+    const keys = Object.keys(parsedBody);
+    const formattedBody = `{${keys[0]}: "${parsedBody[keys[0]]}", ${keys.slice(1).map(key => `${key}: ${parsedBody[key]}`).join(', ')}}`;
+    return formattedBody;
+  } catch (error) {
+    console.error('Error formatting POST request body:', error);
+    return rawBody;
+  }
 }
 
 function interactWithChatbot(chatMessage, method = 'POST') {
