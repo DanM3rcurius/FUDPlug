@@ -81,22 +81,31 @@ function processApiRequest(req, res) {
   });
 }
 
-function interactWithChatbot(chatMessage) {
-  const apiUrl = `${process.env.MAGICK_API_URL}/${process.env.MAGICK_AGENT_ID}`;
+function interactWithChatbot(chatMessage, method = 'POST') {
+  let apiUrl = `${process.env.MAGICK_API_URL}`;  // Updated URL for both GET and POST requests
 
-  const requestBody = {
-    id: process.env.MAGICK_AGENT_ID,
-    content: chatMessage
-  };
-
-  return fetch(apiUrl, {
-    method: 'POST',
+  const requestOptions = {
+    method: method,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${process.env.MAGICK_API_KEY}'
-    },
-    body: JSON.stringify(requestBody)
-  })
+      'Authorization': `Bearer ${process.env.MAGICK_API_KEY}`
+    }
+  };
+
+  if (method === 'POST') {
+    // Include "content" and "id" in the request body for POST requests
+    const requestBody = {
+      content: chatMessage,
+      id: process.env.MAGICK_AGENT_ID
+    };
+
+    requestOptions.body = JSON.stringify(requestBody);
+  } else if (method === 'GET') {
+    // Append "content" and "id" to the URL for GET requests
+    apiUrl = `${apiUrl}/${process.env.MAGICK_AGENT_ID}?content=${encodeURIComponent(chatMessage)}`;
+  }
+
+  return fetch(apiUrl, requestOptions)
     .then(response => response.json())
     .then(data => data.message)
     .catch(error => {
@@ -104,6 +113,7 @@ function interactWithChatbot(chatMessage) {
       throw error;
     });
 }
+
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
