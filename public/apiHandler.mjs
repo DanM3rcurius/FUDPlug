@@ -2,18 +2,19 @@ import http from 'http';
 import dotenv from 'dotenv';
 dotenv.config();
 import fetch from 'node-fetch';
-import cors from 'cors'; 
-// Environment Variables (dotenv)
-const MAGICK_API_KEY = process.env.MAGICK_API_KEY; 
-const MAGICK_AGENT_ID = process.env.MAGICK_AGENT_ID; 
-const MAGICK_API_URL = process.env.MAGICK_API_URL; 
+import cors from 'cors';
 
-// create http server
+// Environment Variables
+const MAGICK_API_KEY = process.env.MAGICK_API_KEY;
+const MAGICK_AGENT_ID = process.env.MAGICK_AGENT_ID;
+const MAGICK_API_URL = process.env.MAGICK_API_URL;
+
+// Create an HTTP server
 const server = http.createServer((req, res) => {
   // Enable CORS for all routes
   cors()(req, res, () => {
     if (req.method === 'GET') {
-      interactWithChatbot(); // Handle GET requests for retrieving chatbot responses
+      handleGetRequest(req, res);
     } else if (req.method === 'POST') {
       handlePostRequest(req, res);
     } else {
@@ -22,6 +23,16 @@ const server = http.createServer((req, res) => {
     }
   });
 });
+
+function handleGetRequest(req, res) {
+  // Check if the URL is '/api'
+  if (req.url === '/api') {
+    processApiRequest(req, res);
+  } else {
+    res.writeHead(501, { 'Content-Type': 'text/plain' });
+    res.end('Unsupported method');
+  }
+}
 
 function handlePostRequest(req, res) {
   if (req.url === '/api') {
@@ -40,7 +51,7 @@ function processApiRequest(req, res) {
   });
 
   req.on('end', () => {
-    console.log('POST body:', body);
+    console.log('Request body:', body);
 
     try {
       const jsonBody = JSON.parse(body);
@@ -51,7 +62,7 @@ function processApiRequest(req, res) {
           // Set CORS headers explicitly
           res.writeHead(200, {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*', // Allow requests from any origin
+            'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
             'Access-Control-Allow-Headers': 'Content-Type, Authorization'
           });
@@ -71,18 +82,18 @@ function processApiRequest(req, res) {
 }
 
 function interactWithChatbot(chatMessage) {
-  const apiUrl = `${process.env.MAGICK_API_URL}/${process.env.MAGICK_AGENT_ID}?apiKey=${process.env.MAGICK_API_KEY}`;
+  const apiUrl = `${process.env.MAGICK_API_URL}/${process.env.MAGICK_AGENT_ID}`;
 
   const requestBody = {
     id: process.env.MAGICK_AGENT_ID,
-    apiKey: process.env.MAGICK_API_KEY,
     content: chatMessage
   };
 
   return fetch(apiUrl, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': process.env.MAGICK_API_KEY
     },
     body: JSON.stringify(requestBody)
   })
@@ -94,4 +105,7 @@ function interactWithChatbot(chatMessage) {
     });
 }
 
-export { processApiRequest, interactWithChatbot };
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
