@@ -81,17 +81,6 @@ function processApiRequest(req, res) {
   });
 }
 
-function formatPostRequestBody(rawBody) {
-  try {
-    const parsedBody = JSON.parse(rawBody);
-    const keys = Object.keys(parsedBody);
-    const formattedBody = `{${keys[0]}: "${parsedBody[keys[0]]}", ${keys.slice(1).map(key => `${key}: ${parsedBody[key]}`).join(', ')}}`;
-    return formattedBody;
-  } catch (error) {
-    console.error('Error formatting POST request body:', error);
-    return rawBody;
-  }
-}
 
 function interactWithChatbot(chatMessage, method = 'POST') {
   let apiUrl = process.env.MAGICK_API_URL;  // Updated URL for both GET and POST requests
