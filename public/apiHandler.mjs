@@ -43,7 +43,7 @@ function handlePostRequest(req, res) {
   }
 }
 
-function processApiRequest(req, res) {
+export function processApiRequest(req, res) {
   let body = '';
 
   req.on('data', (chunk) => {
@@ -84,8 +84,7 @@ function processApiRequest(req, res) {
   });
 }
 
-
-function interactWithChatbot(chatMessage, method = 'POST') {
+export function interactWithChatbot(chatMessage, method = 'POST') {
   let apiUrl = process.env.MAGICK_API_URL;  // Updated URL for both GET and POST requests
 
   const requestOptions = {

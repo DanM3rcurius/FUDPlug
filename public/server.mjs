@@ -1,5 +1,5 @@
 import http from 'http';
-import { processApiRequest, interactWithChatbot } from './apiHandler.mjs'; // Update the path accordingly
+import { processApiRequest } from './apiHandler.mjs'; // Update the path accordingly
 
 const server = http.createServer((req, res) => {
   // Allow requests from any origin
