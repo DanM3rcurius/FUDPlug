@@ -7,6 +7,27 @@ const MAGICK_API_KEY = process.env.MAGICK_API_KEY;
 const MAGICK_AGENT_ID = process.env.MAGICK_AGENT_ID;
 const MAGICK_API_URL = process.env.MAGICK_API_URL;
 
+
+export function handleGetRequest(req, res) {
+    // Check if the URL is '/api'
+    if (req.url === '/api') {
+      processApiRequest(req, res);
+    } else {
+      res.writeHead(501, { 'Content-Type': 'text/plain' });
+      res.end('Unsupported method');
+    }
+  }
+  
+  export function handlePostRequest(req, res) {
+    if (req.url === '/api') {
+      processApiRequest(req, res);
+    } else {
+      res.writeHead(501, { 'Content-Type': 'text/plain' });
+      res.end('Unsupported method');
+    }
+  }
+  
+
 export function interactWithChatbot(chatMessage, method = 'POST') {
     let apiUrl = process.env.MAGICK_API_URL;  // Updated URL for both GET and POST requests
   
