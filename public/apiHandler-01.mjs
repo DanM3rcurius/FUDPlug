@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import fetch from 'node-fetch';
+import cors from 'cors';
+
 
 // Environment Variables
 const MAGICK_API_KEY = process.env.MAGICK_API_KEY;
@@ -60,13 +62,14 @@ export function processApiRequest(req, res) {
 
       interactWithChatbot(content, method)
         .then(apiResponse => {
-          // Set CORS headers explicitly
-          res.writeHead(200, {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization'
-          });
+      // Use cors middleware
+      cors()(req, res, () => {
+        // Preflight request, respond with success
+        if (req.method === 'OPTIONS') {
+          res.writeHead(200);
+          res.end();
+          return;
+        }
           res.end(JSON.stringify({ message: apiResponse }));
         })
         .catch(error => {
