@@ -51,7 +51,7 @@ function processApiRequest(req, res) {
   });
 
   req.on('end', () => {
-    console.log('Request body:', formatPostRequestBody(body));
+    console.log('Request body:', body);
 
     try {
       const jsonBody = JSON.parse(body);
@@ -80,7 +80,6 @@ function processApiRequest(req, res) {
     }
   });
 }
-
 
 function interactWithChatbot(chatMessage, method = 'POST') {
   let apiUrl = process.env.MAGICK_API_URL;  // Updated URL for both GET and POST requests
