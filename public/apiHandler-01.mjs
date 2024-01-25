@@ -23,6 +23,7 @@ export function interactWithChatbot(chatMessage, method = 'POST') {
       const requestBody = {
         content: chatMessage,
         agentId: process.env.MAGICK_AGENT_ID
+        apiKey: process.env.MAGICK_API_KEY
       };
   
       requestOptions.body = JSON.stringify(requestBody);
