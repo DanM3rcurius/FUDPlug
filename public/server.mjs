@@ -16,13 +16,14 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.method === 'GET' || req.method === 'POST') {
-    // Handle GET or POST requests for API interactions
+  if (req.method !== 'OPTIONS') {
+    // Handle requests for API interactions
     processApiRequest(req, res);
   } else {
     res.writeHead(501, { 'Content-Type': 'text/plain' });
     res.end('Unsupported method');
   }
+  
 });
 
 const PORT = process.env.PORT || 3000;
