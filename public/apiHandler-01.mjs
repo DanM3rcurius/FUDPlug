@@ -54,30 +54,9 @@ export function processApiRequest(req, res) {
       // Check if the request method is GET or POST
       const method = req.method;
 
-      if (method === 'GET') {
+      if (method === 'GET' || method === 'POST') {
         const { id, content } = jsonBody;
         interactWithChatbot({ id, content }, method)
-          .then(apiResponse => {
-            // Use cors middleware
-            cors()(req, res, () => {
-              // Preflight request, respond with success
-              if (req.method === 'OPTIONS') {
-                res.writeHead(200);
-                res.end();
-                return;
-              }
-
-              res.end(JSON.stringify({ message: apiResponse }));
-            });
-          })
-          .catch(error => {
-            console.error('Error processing API request:', error);
-            res.writeHead(500, { 'Content-Type': 'text/plain' });
-            res.end('Internal Server Error');
-          });
-      } else if (method === 'POST') {
-        const { content } = jsonBody;
-        interactWithChatbot({ content }, method)
           .then(apiResponse => {
             // Use cors middleware
             cors()(req, res, () => {
