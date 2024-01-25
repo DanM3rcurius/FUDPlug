@@ -15,44 +15,42 @@
 
 				<script>
 					async function sendMessage() {
-					  try {
-						// Get the user's message
-						var message = document.getElementById("chatMessage").value;
-				  
-						// Make a request to the proxy server for sending a message
-						const response = await fetch('http://localhost:3000/api', {
-						  method: 'POST',
-						  headers: {
-							'Content-Type': 'application/json',
-						  },
-						  body: JSON.stringify({
+						try {
+							// Get the user's message
+							var message = document.getElementById("chatMessage").value;
+
+							// Log the payload before sending
+							console.log('Sending payload:', {
 							content: message,
 							agentId: 'fc213231-8e79-4329-bd18-45ff993c4809', // Replace with your actual agentId
-						  }),
-						});
-				  
-						// Check if the response was successful
-						if (!response.ok) {
-						  throw new Error(`Failed to send message. Status: ${response.status}`);
+							});
+
+							// Make a request to the proxy server for sending a message
+							const response = await fetch('http://localhost:3000/api', {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify({
+								content: message,
+								agentId: 'fc213231-8e79-4329-bd18-45ff993c4809', // Replace with your actual agentId
+							}),
+							});
+
+							// Check if the response was successful
+							if (!response.ok) {
+							throw new Error(`Failed to send message. Status: ${response.status}`);
+							}
+
+							const data = await response.json();
+
+							// Display the response message in the chat container
+							displayMessage(data.message);
+						} catch (error) {
+							console.error('Error:', error);
 						}
-				  
-						const data = await response.json();
-				  
-						// Display the response message in the chat container
-						displayMessage(data.message);
-					  } catch (error) {
-						console.error('Error:', error);
-					  }
-					}
-				  
-					function displayMessage(message) {
-					  // Display the received message in the chat container
-					  var messageContainer = document.getElementById("chat-container");
-					  var messageElement = document.createElement("div");
-					  messageElement.className = "chat-message";
-					  messageElement.textContent = message;
-					  messageContainer.appendChild(messageElement);
-					}
+						}
+
 				  </script>
 				  
 				  
