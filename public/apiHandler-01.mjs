@@ -21,9 +21,9 @@ export function interactWithChatbot(chatMessage, method = 'POST') {
     if (method === 'POST') {
       // Include "content" and "id" in the request body for POST requests
       const requestBody = {
-        content: chatMessage,
         agentId: process.env.MAGICK_AGENT_ID,
-        apiKey: process.env.MAGICK_API_KEY
+        apiKey: process.env.MAGICK_API_KEY,
+        content: chatMessage
       };
   
       requestOptions.body = JSON.stringify(requestBody);
