@@ -25,8 +25,9 @@ export function interactWithChatbot(content, method = 'POST') {
       agentId: process.env.MAGICK_AGENT_ID,
       content: content,
     });
+
+    requestOptions.body = requestBody;  // Set the body property in requestOptions
   }
-  
 
   return fetch(apiUrl, requestOptions)
     .then(response => response.json())
@@ -36,6 +37,7 @@ export function interactWithChatbot(content, method = 'POST') {
       throw error;
     });
 }
+
 
 export function processApiRequest(req, res) {
   let body = '';
