@@ -7,7 +7,7 @@ const MAGICK_API_KEY = process.env.MAGICK_API_KEY;
 const MAGICK_AGENT_ID = process.env.MAGICK_AGENT_ID;
 const MAGICK_API_URL = process.env.MAGICK_API_URL;
 
-export function interactWithChatbot(chatMessage, method = 'POST') {
+export function interactWithChatbot(content, method = 'POST') {
     let apiUrl = `${process.env.MAGICK_API_URL}/api`;  // Updated URL for both GET and POST requests
   
     const requestOptions = {
@@ -23,13 +23,13 @@ export function interactWithChatbot(chatMessage, method = 'POST') {
       const requestBody = {
         agentId: process.env.MAGICK_AGENT_ID,
         apiKey: process.env.MAGICK_API_KEY,
-        content: chatMessage
+        content: content
       };
   
       requestOptions.body = JSON.stringify(requestBody);
     } else if (method === 'GET') {
       // Append "content" and "id" to the URL for GET requests
-      apiUrl = `${apiUrl}/${process.env.MAGICK_AGENT_ID}?content=${encodeURIComponent(chatMessage)}`;
+      apiUrl = `${apiUrl}/${process.env.MAGICK_AGENT_ID}?content=${encodeURIComponent(content)}`;
     }
   
     return fetch(apiUrl, requestOptions)
@@ -43,7 +43,7 @@ export function interactWithChatbot(chatMessage, method = 'POST') {
 
 export function processApiRequest(req, res) {
   const jsonBody = JSON.parse(body);
-  const chatMessage = jsonBody.content;
+  const content = jsonBody.content;
   const id = jsonBody.id;
   const apiKey = jsonBody.apiKey;
   let body = '';
@@ -57,12 +57,12 @@ export function processApiRequest(req, res) {
 
     try {
       const jsonBody = JSON.parse(body);
-      const chatMessage = jsonBody.content;
+      const content = jsonBody.content;
 
       // Check if the request method is GET or POST
       const method = req.method;
 
-      interactWithChatbot(chatMessage, method)
+      interactWithChatbot(content, method)
         .then(apiResponse => {
           // Set CORS headers explicitly
           res.writeHead(200, {
