@@ -12,30 +12,38 @@
 				<link rel="stylesheet" href="assets/css/main.css" />
 				<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 				<script>
-					function sendMessage() {
-					  // Get the user's message
-					  var message = document.getElementById("chatMessage").value;
+					async function sendMessage() {
+					  try {
+						// Get the user's message
+						var message = document.getElementById("chatMessage").value;
 				  
-					  // Make a request to the proxy server for sending a message
-					  fetch('http://localhost:3000/api', {
-						method: 'POST',
-						headers: {
-						  'Content-Type': 'application/json',
-						},
-						body: JSON.stringify({
-						  content: message,
-						  agentId: 'fc213231-8e79-4329-bd18-45ff993c4809' // Replace with your actual agentId
-						}),
-					  })
-					  .then(response => response.json())
-					  .then(data => {
-						// Process the response from the MagickML API and update the UI
-						console.log('MagickML Response:', data);
+						// Make a request to the proxy server for sending a message
+						const response = await fetch('http://localhost:3000/api', {
+						  method: 'POST',
+						  headers: {
+							'Content-Type': 'application/json',
+						  },
+						  body: JSON.stringify({
+							content: message,
+							agentId: 'fc213231-8e79-4329-bd18-45ff993c4809', // Replace with your actual agentId
+						  }),
+						});
+				  
+						// Check if the response was successful
+						if (!response.ok) {
+						  throw new Error(`Failed to send message. Status: ${response.status}`);
+						}
+				  
+						const data = await response.json();
 				  
 						// Display the response message in the chat container
 						displayMessage(data.message);
-					  })
-					  .catch((error) => {werveressage) {
+					  } catch (error) {
+						console.error('Error:', error);
+					  }
+					}
+				  
+					function displayMessage(message) {
 					  // Display the received message in the chat container
 					  var messageContainer = document.getElementById("chat-container");
 					  var messageElement = document.createElement("div");
@@ -44,6 +52,7 @@
 					  messageContainer.appendChild(messageElement);
 					}
 				  </script>
+				  
 				  
 				
 				
