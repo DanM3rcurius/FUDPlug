@@ -100,7 +100,7 @@ function interactWithChatbot(chatMessage, method = 'POST') {
     method: method,
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.MAGICK_API_KEY}`
+      'Authorization': process.env.MAGICK_API_KEY
     }
   };
 
@@ -108,7 +108,7 @@ function interactWithChatbot(chatMessage, method = 'POST') {
     // Include "content" and "id" in the request body for POST requests
     const requestBody = {
       content: chatMessage,
-      id: process.env.MAGICK_AGENT_ID
+      agentId: process.env.MAGICK_AGENT_ID
     };
 
     requestOptions.body = JSON.stringify(requestBody);
