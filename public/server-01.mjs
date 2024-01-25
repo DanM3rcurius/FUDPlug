@@ -1,6 +1,6 @@
 import http from 'http';
 import cors from 'cors';
-import { handleGetRequest, handlePostRequest } from './apiHandler.mjs'; // Update the path accordingly
+import { handleGetRequest, handlePostRequest } from '/apiHandler.mjs'; // Update the path accordingly
 
 const server = http.createServer((req, res) => {
   // Allow requests from any origin
