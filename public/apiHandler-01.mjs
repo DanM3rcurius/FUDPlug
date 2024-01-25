@@ -27,10 +27,20 @@ export function interactWithChatbot(content, method = 'POST') {
   
       requestOptions.body = JSON.stringify(requestBody);
 
-    } else if (method === 'GET') {
-      // Append "content" and "id" to the URL for GET requests
-      apiUrl = `${apiUrl}/${process.env.MAGICK_AGENT_ID}?content=${encodeURIComponent(content)}`;
-    }
+  
+    return fetch(apiUrl, requestOptions)
+      .then(response => response.json())
+      .then(data => data.message)
+      .catch(error => {
+        console.error('Error interacting with chatbot:', error);
+        throw error;
+      });
+  }}
+
+export function processApiRequest(req, res) {
+  const jsonBody = JSON.parse(body);
+  const content = jsonBody.content;
+  const id = jsonBody.id;
   const apiKey = jsonBody.apiKey;
   let body = '';
 
