@@ -18,7 +18,9 @@
 						try {
 							// Get the user's message
 							var message = document.getElementById("chatMessage").value;
-
+							// Display the response message in the chat container
+							displayMessage(data.message);
+							
 							// Log the payload before sending
 							console.log('Sending payload:', {
 							content: message,
@@ -44,8 +46,7 @@
 
 							const data = await response.json();
 
-							// Display the response message in the chat container
-							displayMessage(data.message);
+
 						} catch (error) {
 							console.error('Error:', error);
 						}
