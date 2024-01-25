@@ -21,13 +21,12 @@ export function interactWithChatbot(content, method = 'POST') {
   };
 
   if (method === 'POST') {
-    const requestBody = {
+    const requestBody = JSON.stringify({
       agentId: process.env.MAGICK_AGENT_ID,
       content: content,
-    };
-
-    requestOptions.body = JSON.stringify(requestBody);
+    });
   }
+  
 
   return fetch(apiUrl, requestOptions)
     .then(response => response.json())
