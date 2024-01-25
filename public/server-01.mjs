@@ -9,35 +9,27 @@ const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
   // Allow the necessary headers
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
- // Enable CORS for all routes
- cors()(req, res, () => {
+
+  // Use cors middleware
+  cors()(req, res, () => {
+    // Preflight request, respond with success
+    if (req.method === 'OPTIONS') {
+      res.writeHead(200);
+      res.end();
+      return;
+    }
+
+    // Handle requests for API interactions
     if (req.method === 'GET') {
       handleGetRequest(req, res);
     } else if (req.method === 'POST') {
       handlePostRequest(req, res);
     } else {
-      res.writeHead(501, { 'Content-Type': 'text/plain' });
-      res.end('Unsupported method');
+      res.writeHead(405, { 'Content-Type': 'text/plain' });
+      res.end('Method Not Allowed');
     }
   });
 });
-  // Preflight request, respond with success
-  if (req.method === 'OPTIONS') {
-    res.writeHead(200);
-    res.end();
-    return;
-  }
-
-  // Handle requests for API interactions
-  if (req.method === 'GET') {
-    handleGetRequest(req, res);
-  } else if (req.method === 'POST') {
-    handlePostRequest(req, res);
-  } else {
-    res.writeHead(501, { 'Content-Type': 'text/plain' });
-    res.end('Unsupported method');
-  }
-;
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
