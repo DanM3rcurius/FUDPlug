@@ -26,10 +26,7 @@ export function interactWithChatbot(content, method = 'POST') {
       };
   
       requestOptions.body = JSON.stringify(requestBody);
-    } else if (method === 'GET') {
-      // Append "content" and "id" to the URL for GET requests
-      apiUrl = `${apiUrl}/${process.env.MAGICK_AGENT_ID}?content=${encodeURIComponent(content)}`;
-    }
+
   
     return fetch(apiUrl, requestOptions)
       .then(response => response.json())
