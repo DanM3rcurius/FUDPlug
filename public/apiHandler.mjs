@@ -57,7 +57,10 @@ function processApiRequest(req, res) {
       const jsonBody = JSON.parse(body);
       const chatMessage = jsonBody.content;
 
-      interactWithChatbot(chatMessage)
+      // Check if the request method is GET or POST
+      const method = req.method;
+
+      interactWithChatbot(chatMessage, method)
         .then(apiResponse => {
           // Set CORS headers explicitly
           res.writeHead(200, {
@@ -80,6 +83,7 @@ function processApiRequest(req, res) {
     }
   });
 }
+
 
 function interactWithChatbot(chatMessage, method = 'POST') {
   let apiUrl = process.env.MAGICK_API_URL;  // Updated URL for both GET and POST requests
