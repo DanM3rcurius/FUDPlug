@@ -22,7 +22,7 @@ export function interactWithChatbot(chatMessage, method = 'POST') {
       // Include "content" and "id" in the request body for POST requests
       const requestBody = {
         content: chatMessage,
-        agentId: process.env.MAGICK_AGENT_ID
+        agentId: process.env.MAGICK_AGENT_ID,
         apiKey: process.env.MAGICK_API_KEY
       };
   
@@ -42,6 +42,10 @@ export function interactWithChatbot(chatMessage, method = 'POST') {
   }
 
 export function processApiRequest(req, res) {
+  const jsonBody = JSON.parse(body);
+  const chatMessage = jsonBody.content;
+  const id = jsonBody.id;
+  const apiKey = jsonBody.apiKey;
   let body = '';
 
   req.on('data', (chunk) => {
