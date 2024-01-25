@@ -29,13 +29,13 @@ export function handleGetRequest(req, res) {
   
 
 export function interactWithChatbot(chatMessage, method = 'POST') {
-    let apiUrl = process.env.MAGICK_API_URL;  // Updated URL for both GET and POST requests
+    let apiUrl = `${process.env.MAGICK_API_URL}/api`;  // Updated URL for both GET and POST requests
   
     const requestOptions = {
       method: method,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': process.env.MAGICK_API_KEY
+        'Authorization': process.env.MAGICK_API_KEY,
       }
     };
   
