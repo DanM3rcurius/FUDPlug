@@ -59,6 +59,12 @@ export function processApiRequest(req, res) {
         const { id, content } = jsonBody;
         interactWithChatbot({ id, content }, method)
           .then(apiResponse => {
+            // Allow requests from any origin
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            // Allow the necessary methods
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+            // Allow the necessary headers
+            res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
             // Use cors middleware
             cors()(req, res, () => {
               // Preflight request, respond with success
