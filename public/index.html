@@ -31,6 +31,9 @@
 							console.log('Sending payload:', {
 							agentId: 'fc213231-8e79-4329-bd18-45ff993c4809', // Replace with your actual agentId
 							content: message,
+							client: "cloud", 
+							sessionId: "123", 
+							sender: "tester"
 						
 							});
 
@@ -43,6 +46,9 @@
 							body: JSON.stringify({
 								agentId: 'fc213231-8e79-4329-bd18-45ff993c4809', // Replace with your actual agentId
 								content: message,
+								client: "cloud", 
+								sessionId: "123", 
+								sender: "tester",
 							}),
 							});
 
