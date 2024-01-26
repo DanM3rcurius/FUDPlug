@@ -4,7 +4,12 @@ import { processApiRequest } from './apiHandler-01.mjs'; // Update the path acco
 
 
 const server = http.createServer((req, res) => {
-
+  // Allow requests from any origin
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Allow the necessary methods
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+  // Allow the necessary headers
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   // Use cors middleware
   cors()(req, res, () => {
     // Preflight request, respond with success
@@ -16,7 +21,7 @@ const server = http.createServer((req, res) => {
 
     // Handle requests for API interactions
     if (req.method === 'GET' || req.method === 'POST') {
-      handleApiRequest(req, res);
+      processApiRequest(req, res);
     } else {
       res.writeHead(405, { 'Content-Type': 'text/plain' });
       res.end('Method Not Allowed');
