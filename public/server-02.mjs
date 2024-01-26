@@ -33,10 +33,8 @@ const server = http.createServer((req, res) => {
     }
 
     // Handle requests for API interactions
-    if (req.method === 'GET') {
-      handleGetRequest(req, res);
-    } else if (req.method === 'POST') {
-      handlePostRequest(req, res);
+    if (req.method === 'GET' || req.method === 'POST') {
+      handleApiRequest(req, res);
     } else {
       res.writeHead(405, { 'Content-Type': 'text/plain' });
       res.end('Method Not Allowed');
