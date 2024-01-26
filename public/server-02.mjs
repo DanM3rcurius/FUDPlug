@@ -2,24 +2,6 @@ import http from 'http';
 import cors from 'cors';
 import { processApiRequest } from './apiHandler-01.mjs'; // Update the path accordingly
 
-function handleGetRequest(req, res) {
-    // Check if the URL is '/api'
-    if (req.url === '/api') {
-      processApiRequest(req, res);
-    } else {
-      res.writeHead(501, { 'Content-Type': 'text/plain' });
-      res.end('Unsupported method');
-    }
-  }
-  
-  function handlePostRequest(req, res) {
-    if (req.url === '/api') {
-      processApiRequest(req, res);
-    } else {
-      res.writeHead(501, { 'Content-Type': 'text/plain' });
-      res.end('Unsupported method');
-    }
-  }
 
 const server = http.createServer((req, res) => {
 
