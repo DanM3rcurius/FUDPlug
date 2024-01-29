@@ -9,7 +9,7 @@ const MAGICK_API_KEY = process.env.MAGICK_API_KEY;
 const MAGICK_AGENT_ID = process.env.MAGICK_AGENT_ID;
 const MAGICK_API_URL = process.env.MAGICK_API_URL;
 
-export function interactWithChatbot(content, method = 'POST') {
+export function interactWithChatbot(prompt, method = 'POST') {
   let apiUrl = `${process.env.MAGICK_API_URL}/api`;
 
   const requestOptions = {
@@ -21,11 +21,11 @@ export function interactWithChatbot(content, method = 'POST') {
   };
 
   if (method === 'POST') {
-    const requestBody = JSON.stringify({
+    const requestBody = JSON.stringify({content
       0: {
         json: {
           agentId: process.env.MAGICK_AGENT_ID,
-          content: content,
+          prompt: prompt,
           client: "localhost", 
           sessionId: "a355f623-fa09-4a20-ae67-0cf3ez90fd5e", 
           sender: "b74202bf-b373-40a1-bc2a-61dec89d4275",
@@ -63,8 +63,8 @@ export function processApiRequest(req, res) {
       const method = req.method;
 
       if (method === 'GET' || method === 'POST') {
-        const { id, content } = jsonBody;
-        interactWithChatbot({ id, content }, method)
+        const { id, prompt } = jsonBody;
+        interactWithChatbot({ id, prompt }, method)
           .then(apiResponse => {
             // Allow requests from any origin
             res.setHeader('Access-Control-Allow-Origin', '*');
