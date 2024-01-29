@@ -24,6 +24,9 @@ export function interactWithChatbot(content, method = 'POST') {
     const requestBody = JSON.stringify({
       agentId: process.env.MAGICK_AGENT_ID,
       content: content,
+      client: "cloud", 
+      sessionId: "123", 
+      sender: "tester",
     });
 
     requestOptions.body = requestBody;  // Set the body property in requestOptions
