@@ -21,7 +21,7 @@ export function interactWithChatbot(prompt, method = 'POST') {
   };
 
   if (method === 'POST') {
-    const requestBody = JSON.stringify({content
+    const requestBody = JSON.stringify({
       0: {
         json: {
           agentId: process.env.MAGICK_AGENT_ID,
