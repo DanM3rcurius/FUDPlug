@@ -25,8 +25,8 @@ export function interactWithChatbot(content, method = 'POST') {
       agentId: process.env.MAGICK_AGENT_ID,
       content: content,
       client: "localhost", 
-      sessionId, 
-      sender,
+      sessionId: "a355f623-fa09-4a20-ae67-0cf3ez90fd5e", 
+      sender: "b74202bf-b373-40a1-bc2a-61dec89d4275",
     });
 
     requestOptions.body = requestBody;  // Set the body property in requestOptions
