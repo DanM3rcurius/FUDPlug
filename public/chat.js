@@ -19,7 +19,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // Define the sendMessage function here, using the agentPOST function from MagickML
-    // ...
+    async function sendMessage(prompt, sessionId) {
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prompt, sessionId })
+            });
+    
+            const data = await response.json();
+            // Here, you should add the logic to display the response in the chat window
+            console.log(data); // For now, just logging the response
+        } catch (error) {
+            console.error('Error sending message:', error);
+            // Handle the error (e.g., show an error message in the chat window)
+        }
+    }
+        
 });
 
 async function agentPOST(id, prompt, sender, sessionId) {

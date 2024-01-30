@@ -1,5 +1,5 @@
 const express = require('express');
-const fetch = require('node-fetch');
+const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
 
@@ -29,23 +29,20 @@ app.get('/api/session-id', (req, res) => {
 app.post('/api/chat', async (req, res) => {
     const { prompt, sessionId } = req.body;
     try {
-        const response = await fetch(`${process.env.MAGICK_API_URL}/api`, {
-            method: "POST",
+        const response = await axios.post(`${process.env.MAGICK_API_URL}/api`, {
+            agentId: process.env.MAGICK_AGENT_ID,
+            content: prompt,
+            client: "cloud",
+            sessionId: sessionId,
+            sender: "user", // Update as needed
+        }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": process.env.MAGICK_API_KEY,
-            },
-            body: JSON.stringify({
-                agentId: process.env.MAGICK_AGENT_ID,
-                content: prompt,
-                client: "cloud",
-                sessionId: sessionId,
-                sender: "user", // Update this if you have specific sender IDs
-            }),
+            }
         });
 
-        const data = await response.json();
-        res.json(data);
+        res.json(response.data);
     } catch (error) {
         console.error('Error processing API request:', error);
         res.status(500).send('Internal Server Error');
