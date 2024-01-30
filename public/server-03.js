@@ -32,7 +32,7 @@ app.post('/api/chat', async (req, res) => {
         const response = await axios.post(`${process.env.MAGICK_API_URL}/api`, {
             agentId: process.env.MAGICK_AGENT_ID,
             content: prompt,
-            client: "cloud",
+            client: "FUDPLUG_localhost",
             sessionId: sessionId,
             sender: "user", // Update as needed
         }, {
