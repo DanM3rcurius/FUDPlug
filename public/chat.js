@@ -39,7 +39,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
         
 });
-
-async function agentPOST(id, prompt, sender, sessionId) {
-    // Your API logic here
-}
