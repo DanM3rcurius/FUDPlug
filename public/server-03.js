@@ -6,7 +6,6 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
-app.use(express.static('public')); // Serve static files
 app.use(express.json()); // Parse JSON bodies
 
 // CORS Middleware (if needed)
