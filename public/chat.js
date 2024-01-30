@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     } catch (error) {
         console.error('Error fetching session ID:', error);
-}
-
-    }
+    } // This closing bracket was misplaced
 
     // Function to handle sending messages
     sendButton.addEventListener('click', () => {
