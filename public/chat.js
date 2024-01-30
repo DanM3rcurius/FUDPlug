@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Fetch session ID from the server
     let sessionId = '';
     try {
-        const response = await fetch('/session-id');
+        const response = await fetch('/api/session-id'); // Updated endpoint
         if (response.ok) {
             const data = await response.json();
             sessionId = data.sessionId;
@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     } catch (error) {
         console.error('Error fetching session ID:', error);
+}
+
     }
 
     // Function to handle sending messages
