@@ -1,3 +1,5 @@
+const axios = require('axios'); // Import Axios
+
 document.addEventListener('DOMContentLoaded', async () => {
     const chatInput = document.getElementById('chat-input');
     const sendButton = document.getElementById('send-btn');
@@ -5,9 +7,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Fetch session ID from the server
     let sessionId = '';
     try {
-        const response = await fetch('/session-id');
-        const data = await response.json();
-        sessionId = data.sessionId;
+        const response = await axios.get('/session-id');
+        sessionId = response.data.sessionId;
     } catch (error) {
         console.error('Error fetching session ID:', error);
     }
@@ -21,15 +22,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Define the sendMessage function here, using the agentPOST function from MagickML
     async function sendMessage(prompt, sessionId) {
         try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
+            const response = await axios.post('/api/chat', {
+                prompt,
+                sessionId
+            }, {
                 headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ prompt, sessionId })
+                    'Content-Type': 'application/json'
+                }
             });
     
-            const data = await response.json();
+            const data = response.data;
             // Here, you should add the logic to display the response in the chat window
             console.log(data); // For now, just logging the response
         } catch (error) {
