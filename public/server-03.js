@@ -28,12 +28,15 @@ app.get('/api/session-id', (req, res) => {
 app.post('/api/chat', async (req, res) => {
     const { prompt, sessionId } = req.body;
     try {
-        const response = await axios.post(`${process.env.MAGICK_API_URL}/api`, {
+        const apiUrl = `${process.env.MAGICK_API_URL}/api`;
+        console.log('Making request to:', apiUrl); // Log the API URL
+
+        const response = await axios.post(apiUrl, {
             agentId: process.env.MAGICK_AGENT_ID,
             content: prompt,
-            client: "FUDPLUG_localhost",
+            client: "cloud",
             sessionId: sessionId,
-            sender: "user", // Update as needed
+            sender: "user",
         }, {
             headers: {
                 "Content-Type": "application/json",
@@ -41,12 +44,18 @@ app.post('/api/chat', async (req, res) => {
             }
         });
 
-        res.json(response.data);
+        if (response.headers['content-type'].includes('application/json')) {
+            res.json(response.data);
+        } else {
+            console.error('Unexpected response type:', response.headers['content-type']);
+            res.status(500).send('Internal Server Error - Unexpected response type');
+        }
     } catch (error) {
         console.error('Error processing API request:', error);
         res.status(500).send('Internal Server Error');
     }
 });
+
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
