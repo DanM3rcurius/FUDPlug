@@ -32,11 +32,17 @@ document.addEventListener('DOMContentLoaded', async () => {
                 },
                 body: JSON.stringify({ prompt, sessionId }),
             });
-
+    
             if (response.ok) {
                 const data = await response.json();
-                // Here, you should add the logic to display the response in the chat window
-                console.log(data); // For now, just logging the response
+                // Assuming the API response structure is { result: { "Output - REST API (Response)": "response text" } }
+                const botResponse = data.result["Output - REST API (Response)"];
+    
+                // Display user's message
+                addMessageToChatBox('You: ' + prompt);
+    
+                // Display bot's response
+                addMessageToChatBox('Bot: ' + botResponse);
             } else {
                 console.error('Error sending message:', response.status);
                 // Handle the error (e.g., show an error message in the chat window)
@@ -46,4 +52,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Handle the error (e.g., show an error message in the chat window)
         }
     }
+    
+    // Helper function to add messages to the chat box
+    function addMessageToChatBox(message) {
+        const chatBox = document.getElementById('chat-box');
+        const messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        chatBox.appendChild(messageElement);
+    
+        // Scroll to the bottom of the chat box to show the latest message
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+    
 });
