@@ -1,0 +1,92 @@
+#chat-container {
+    width: 90%; /* Use percentage for relative sizing */
+    max-width: 800px; /* Maximum width */
+    min-width: 330px; /* Minimum width */    
+    border: 1px solid #ddd;
+    margin: 0 auto; /* Center align */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: relative;
+    flex-direction: column; /* Flexbox for layout */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#chat-box {
+    flex: 1; /* Flexbox: chat box takes up available space */
+    overflow-y: auto;
+    padding: 10px;
+    padding-bottom: 20px;
+    background-color: #424242;
+}
+
+#chat-input {
+    margin-top: 10px; /* Adds space above the input and button */
+    margin-right: 5px;
+    width: 60%;
+    max-width: 400px; /* Maximum width */
+    min-width: 160px; /* Minimum width */ 
+    padding: 5px;
+}
+
+#send-btn {
+    margin-top: 10px; /* Adds space above the input and button */
+    width: 10%;
+    min-width: 50px; /* Ensure button remains usable */
+    height: 32px;
+    background-color: #FF9900;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#send-btn:hover {
+    background-color: #19a020;
+}
+
+.agent-message {
+    max-width: 90%;
+    text-align: left;
+    background-color: #FF9900;
+    color: white;
+    padding: 5px;
+    padding-right: 10px; /* Adds space inside the element, before the text */
+    margin: 2px 0;
+    border-radius: 5px;
+}
+
+.operator-message {
+    text-align: right;
+    background-color: #19a020;
+    padding: 5px;
+    padding-left: 10px; /* Adds space inside the element, before the text */
+    margin: 2px 0;
+    border-radius: 5px;
+}
+
+/* "is typing" Indicator */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loader {
+      border: 4px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 4px solid rgba(255, 136, 0, 0.747);
+      width: 20px;
+      height: 20px;
+      animation: spin 2s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+      margin: auto;
+      display: block;
+  }
+  
+  @media (max-width: 768px) {
+    #chat-container {
+        width: 100%; /* Full width on smaller screens */
+        min-width: 0; /* Override min-width */
+        padding: 5px; /* Less padding on smaller screens */
+    }
+    #chat-input, #send-btn {
+        margin-top: 5px; /* Less margin on smaller screens */
+    }
+}
