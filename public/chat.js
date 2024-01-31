@@ -50,10 +50,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const botResponse = data.result["Output - REST API (Response)"];
     
                 // Display operator's message
-                addMessageToChatBox('Operator: ' + prompt, 'operator');
+                addMessageToChatBox('**Operator:** ' + prompt, 'operator');
     
                 // Display agent's response
-                addMessageToChatBox('Agent: ' + botResponse, 'agent');
+                addMessageToChatBox('**Agent:** ' + botResponse, 'agent');
             } else {
                 console.error('Error sending message:', response.status);
                 // Handle the error (e.g., show an error message in the chat window)

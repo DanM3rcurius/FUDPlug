@@ -15,11 +15,11 @@
     flex: 1; /* Flexbox: chat box takes up available space */
     overflow-y: auto;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #424242;
 }
 
 #chat-input {
-    width: 40%;
+    width: 60%;
     max-width: 400px; /* Maximum width */
     min-width: 160px; /* Minimum width */ 
     padding: 5px;
