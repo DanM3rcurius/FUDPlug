@@ -24,6 +24,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Define the sendMessage function here, using fetch
     async function sendMessage(prompt, sessionId) {
+        // Display operator's message
+        addMessageToChatBox('Operator: ' + prompt, 'operator');
+    
+        // Insert loader to indicate the bot is "typing"
+        const chatBox = document.getElementById('chat-box');
+        const loader = document.createElement('div');
+        loader.className = 'loader';
+        chatBox.appendChild(loader);
         try {
             const response = await fetch('/api/chat', {
                 method: 'POST',
@@ -32,17 +40,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                 },
                 body: JSON.stringify({ prompt, sessionId }),
             });
-    
+            
+            // Remove loader once the response is received
+            chatBox.removeChild(loader);
+
             if (response.ok) {
                 const data = await response.json();
                 // Assuming the API response structure is { result: { "Output - REST API (Response)": "response text" } }
                 const botResponse = data.result["Output - REST API (Response)"];
     
-                // Display user's message
-                addMessageToChatBox('You: ' + prompt);
+                // Display operator's message
+                addMessageToChatBox('Operator: ' + prompt, 'operator');
     
-                // Display bot's response
-                addMessageToChatBox('Bot: ' + botResponse);
+                // Display agent's response
+                addMessageToChatBox('Agent: ' + botResponse, 'agent');
             } else {
                 console.error('Error sending message:', response.status);
                 // Handle the error (e.g., show an error message in the chat window)
@@ -50,6 +61,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         } catch (error) {
             console.error('Error sending message:', error);
             // Handle the error (e.g., show an error message in the chat window)
+            // Remove loader in case of error as well
+            chatBox.removeChild(loader);
         }
     }
     
