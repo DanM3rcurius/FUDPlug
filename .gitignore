@@ -1,4 +1,8 @@
 # created by virtualenv automatically
+bin/
+lib/
+pyvenv.cfg
+
 # Python virtual environment
 __pycache__/
 *.pyc
