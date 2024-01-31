@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Define the sendMessage function here, using fetch
     async function sendMessage(prompt, sessionId) {
         // Display operator's message
-        addMessageToChatBox('Operator: ' + prompt, 'operator');
+        addMessageToChatBox('You:  ' + prompt, 'operator');
     
         // Insert loader to indicate the bot is "typing"
         const chatBox = document.getElementById('chat-box');
@@ -49,11 +49,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Assuming the API response structure is { result: { "Output - REST API (Response)": "response text" } }
                 const botResponse = data.result["Output - REST API (Response)"];
     
-                // Display operator's message
-                addMessageToChatBox('**Operator:** ' + prompt, 'operator');
-    
                 // Display agent's response
-                addMessageToChatBox('**Agent:** ' + botResponse, 'agent');
+                addMessageToChatBox('FUDPlug:  ' + botResponse, 'agent');
             } else {
                 console.error('Error sending message:', response.status);
                 // Handle the error (e.g., show an error message in the chat window)

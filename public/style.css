@@ -15,10 +15,13 @@
     flex: 1; /* Flexbox: chat box takes up available space */
     overflow-y: auto;
     padding: 10px;
+    padding-bottom: 20px;
     background-color: #424242;
 }
 
 #chat-input {
+    margin-top: 10px; /* Adds space above the input and button */
+    margin-right: 5px;
     width: 60%;
     max-width: 400px; /* Maximum width */
     min-width: 160px; /* Minimum width */ 
@@ -26,6 +29,7 @@
 }
 
 #send-btn {
+    margin-top: 10px; /* Adds space above the input and button */
     width: 10%;
     min-width: 50px; /* Ensure button remains usable */
     height: 32px;
@@ -40,20 +44,21 @@
 }
 
 .agent-message {
-    max-width: 80% ;
+    max-width: 90%;
     text-align: left;
     background-color: #FF9900;
     color: white;
     padding: 5px;
+    padding-right: 10px; /* Adds space inside the element, before the text */
     margin: 2px 0;
     border-radius: 5px;
 }
 
 .operator-message {
-    max-width: 80% ;
     text-align: right;
     background-color: #19a020;
     padding: 5px;
+    padding-left: 10px; /* Adds space inside the element, before the text */
     margin: 2px 0;
     border-radius: 5px;
 }
@@ -75,3 +80,13 @@
       display: block;
   }
   
+  @media (max-width: 768px) {
+    #chat-container {
+        width: 100%; /* Full width on smaller screens */
+        min-width: 0; /* Override min-width */
+        padding: 5px; /* Less padding on smaller screens */
+    }
+    #chat-input, #send-btn {
+        margin-top: 5px; /* Less margin on smaller screens */
+    }
+}
