@@ -73,15 +73,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Helper function to add messages to the chat box
     function addMessageToChatBox(message, sender = 'agent') { // Add sender parameter
-        const chatBox = document.getElementById('chat-box');
+        const messageContainer = document.getElementById('chat-box');
         const messageElement = document.createElement('div');
         messageElement.textContent = message;
-        chatBox.appendChild(messageElement);
+        messageContainer.appendChild(messageElement);
 
         // Add class based on sender
         messageElement.className = sender === 'agent' ? 'agent-message' : 'operator-message' ;
 
-        chatBox.appendChild(messageElement);
+        messageContainer.appendChild(messageElement);
     
         // Scroll to the bottom of the chat box to show the latest message
         chatBox.scrollTop = chatBox.scrollHeight;
