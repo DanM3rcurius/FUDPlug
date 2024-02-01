@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         chatInput.value = ''; // Clear the input field
     
         // Insert loader to indicate the bot is "typing"
-        const chatBox = document.getElementById('chat-box');
+        const messageContainer = document.getElementById('message-container');
         const loader = document.createElement('div');
         loader.className = 'loader';
-        chatBox.appendChild(loader);
+        messageContainer.appendChild(loader);
         try {
             const response = await fetch('/api/chat', {
                 method: 'POST',
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             
             // Remove loader once the response is received
-            chatBox.removeChild(loader);
+            messageContainer.removeChild(loader);
 
             if (response.ok) {
                 const data = await response.json();
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error sending message:', error);
             // Handle the error (e.g., show an error message in the chat window)
             // Remove loader in case of error as well
-            chatBox.removeChild(loader);
+            messageContainer.removeChild(loader);
         }
     }
     
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         messageContainer.appendChild(messageElement);
     
         // Scroll to the bottom of the chat box to show the latest message
-        chatBox.scrollTop = chatBox.scrollHeight;
+        messageContainer.scrollTop = messageContainer.scrollHeight;
     }
     
 });
