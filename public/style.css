@@ -28,20 +28,20 @@
     resize: none; /* Keeps the textarea from being manually resized */
     margin-top: 10px; /* Adds space above the input and button */
     /* margin-right: 5px; */
-    width: 60%;
+    /* width: 60%; */
     border: 1px solid #ccc; /* Example border */
     /* border-radius: 4px; /* Rounded corners */ 
     resize: none; /* Disables the resize handle */
     overflow-y: hidden; /* Prevents scroll bar from appearing */
     box-sizing: border-box; /* Includes padding in the element's total width and height */
-    max-width: 600px; /* Maximum width */
-    min-width: 160px; /* Minimum width */ 
+    /* max-width: 600px; /* Maximum width */
+    /* min-width: 160px; /* Minimum width */ 
     padding: 5px;
 }
 
 #send-btn {
     margin-top: 10px; /* Adds space above the input and button */
-    width: 10%;
+    width: 7%;
     min-width: 50px; /* Ensure button remains usable */
     height: 32px;
     background-color: #FF9900;
