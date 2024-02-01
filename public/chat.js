@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const chatInput = document.getElementById('chat-input');
+    chatInput.addEventListener('input', () => {
+        chatInput.style.height = 'auto'; // Reset height to recalculate
+        chatInput.style.height = chatInput.scrollHeight + 'px'; // Set to scroll height
+    });
     const sendButton = document.getElementById('send-btn');
 
     // Fetch session ID from the server
@@ -26,6 +30,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function sendMessage(prompt, sessionId) {
         // Display operator's message
         addMessageToChatBox('You:  ' + prompt, 'operator');
+
+        // reset text area
+        chatInput.style.height = 'auto'; // Reset height
+        chatInput.value = ''; // Clear the input field
     
         // Insert loader to indicate the bot is "typing"
         const chatBox = document.getElementById('chat-box');
