@@ -105,9 +105,8 @@
       width: 20px;
       height: 20px;
       animation: spin 2s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
-      margin: auto;
+      margin: 10px auto; /* applies a 10px margin to the top and bottom of the loader, while maintaining auto margin on the sides for centering*/ 
       display: block;
-      padding-top: 10px;
   }
   
   @media (max-width: 768px) {
