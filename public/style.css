@@ -71,21 +71,12 @@
 }
 
 .agent-message {
+    padding-top: 10px; 
     max-width: 90%;
     text-align: left;
     background-color: #FF9900;
     color: white;
-    padding: 5px;
-    padding-right: 10px; /* Adds space inside the element, before the text */
-    margin: 2px 0;
-    border-radius: 5px;
-}
-
-.operator-message {
-    text-align: right;
-    background-color: #19a020;
-    padding: 5px;
-    padding-left: 10px; /* Adds space inside the element, before the text */
+    padding: 5px;marginspace inside the element, before the text */
     margin: 2px 0;
     border-radius: 5px;
 }
@@ -103,7 +94,7 @@
       width: 20px;
       height: 20px;
       animation: spin 2s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
-      margin: auto;
+      margin: 3%;
       display: block;
   }
   
