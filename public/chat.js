@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Helper function to add messages to the chat box
     function addMessageToChatBox(message, sender = 'agent') { // Add sender parameter
-        const messageContainer = document.getElementById('chat-box');
+        const messageContainer = document.getElementById('message-container');
         const messageElement = document.createElement('div');
         messageElement.textContent = message;
         messageContainer.appendChild(messageElement);
