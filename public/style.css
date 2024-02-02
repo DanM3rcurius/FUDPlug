@@ -116,9 +116,13 @@
         min-width: 0; /* Override min-width */
         padding: 5px; /* Less padding on smaller screens */
     }
-    #chat-input, #send-btn {
+    #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
         width: 100%; /* Full width for smaller screens */
 
+    }
+    #send-btn {
+        margin-top: 5px; /* Less margin on smaller screens */
+        width: 7%; /* Full width for smaller screens */
     }
 }
