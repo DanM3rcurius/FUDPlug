@@ -76,7 +76,18 @@
     text-align: left;
     background-color: #FF9900;
     color: white;
-    padding: 5px;marginspace inside the element, before the text */
+    padding: 5px;
+    padding-right: 20px; /* Adds space inside the element, before the text */
+    margin: 2px 0;
+    border-radius: 5px;
+}
+
+.operator-message {
+    padding-top: 10px; 
+    text-align: right;
+    background-color: #19a020;
+    padding: 5px;
+    padding-left: 20px; /* Adds space inside the element, before the text */
     margin: 2px 0;
     border-radius: 5px;
 }
