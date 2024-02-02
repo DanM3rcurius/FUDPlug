@@ -1,4 +1,9 @@
 #chat-container {
+    display: flex; /* Enables Flexbox */
+    flex-direction: column; /* Stack message and input containers vertically */
+
+    align-items: stretch; /* Vertically aligns children in the middle */
+    gap: 10px; /* Optional: Adds space between the textarea and the button */
     width: 90%; /* Use percentage for relative sizing */
     max-width: 800px; /* Maximum width */
     min-width: 330px; /* Minimum width */    
@@ -7,30 +12,52 @@
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     position: relative;
-    flex-direction: column; /* Flexbox for layout */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#chat-box {
-    flex: 1; /* Flexbox: chat box takes up available space */
+#message-container {
+    flex-grow: 1; /* Allows the message container to grow and fill available space */
+    overflow-y: auto; /* Enables scrolling for overflow */
+    padding: 10px;
+    padding-bottom: 20px; /* Space at the bottom */
+    background-color: #424242; 
+
+    /* Additional styling as needed */
+}
+
+#input-container {
+    display: flex; /* Enables Flexbox for the input area */
+    align-items: center; /* Aligns the text area and send button vertically */
+    gap: 10px; /* Space between the text area and send button */
+    margin-top: 20px; /* Space between message container and input container */
+}
+/*#chat-box {
+    flex: 1;  /*Flexbox: chat box takes up available space 
     overflow-y: auto;
     padding: 10px;
     padding-bottom: 20px;
-    background-color: #424242;
-}
+    background-color: #424242; 
+} */
 
 #chat-input {
+    flex-grow: 1; /* Allows the textarea to grow and fill the available space */
+    resize: none; /* Keeps the textarea from being manually resized */
     margin-top: 10px; /* Adds space above the input and button */
-    margin-right: 5px;
-    width: 60%;
-    max-width: 400px; /* Maximum width */
+    /* margin-right: 5px; */
+    /* width: 60%; */
+    border: 1px solid #ccc; /* Example border */
+    /* border-radius: 4px; /* Rounded corners */ 
+    resize: none; /* Disables the resize handle */
+    overflow-y: hidden; /* Prevents scroll bar from appearing */
+    box-sizing: border-box; /* Includes padding in the element's total width and height */
+    /* max-width: 600px; /* Maximum width */
     min-width: 160px; /* Minimum width */ 
     padding: 5px;
 }
 
 #send-btn {
     margin-top: 10px; /* Adds space above the input and button */
-    width: 10%;
+    width: 7%;
     min-width: 50px; /* Ensure button remains usable */
     height: 32px;
     background-color: #FF9900;
@@ -44,21 +71,23 @@
 }
 
 .agent-message {
+    padding-top: 10px; 
     max-width: 90%;
     text-align: left;
     background-color: #FF9900;
     color: white;
     padding: 5px;
-    padding-right: 10px; /* Adds space inside the element, before the text */
+    padding-right: 20px; /* Adds space inside the element, before the text */
     margin: 2px 0;
     border-radius: 5px;
 }
 
 .operator-message {
+    padding-top: 10px; 
     text-align: right;
     background-color: #19a020;
     padding: 5px;
-    padding-left: 10px; /* Adds space inside the element, before the text */
+    padding-left: 20px; /* Adds space inside the element, before the text */
     margin: 2px 0;
     border-radius: 5px;
 }
@@ -76,17 +105,24 @@
       width: 20px;
       height: 20px;
       animation: spin 2s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
-      margin: auto;
+      margin: 10px auto; /* applies a 10px margin to the top and bottom of the loader, while maintaining auto margin on the sides for centering*/ 
       display: block;
   }
   
   @media (max-width: 768px) {
     #chat-container {
+        flex-direction: column; /* Stack the textarea and button vertically on smaller screens */
         width: 100%; /* Full width on smaller screens */
         min-width: 0; /* Override min-width */
         padding: 5px; /* Less padding on smaller screens */
     }
-    #chat-input, #send-btn {
+    #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
+        width: 100%; /* Full width for smaller screens */
+
+    }
+    #send-btn {
+        margin-top: 5px; /* Less margin on smaller screens */
+        width: 7%; /* Full width for smaller screens */
     }
 }
