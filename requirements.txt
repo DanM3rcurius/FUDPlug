@@ -46,7 +46,6 @@ multidict==6.0.4
 npyscreen==4.10.5
 ordered-set==4.1.0
 packaging==23.2
-pacman_mirrors==4.24.0
 paramiko==2.11.1
 parse==1.19.1
 pillow==10.2.0
