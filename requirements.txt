@@ -48,7 +48,7 @@ ordered-set==4.1.0
 packaging==23.2
 paramiko==2.11.1
 parse==1.19.1
-pillow==10.2.0
+pillow==10.0.0
 platformdirs==4.1.0
 ply==3.11
 protobuf==4.25.1
