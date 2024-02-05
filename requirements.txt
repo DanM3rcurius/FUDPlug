@@ -77,7 +77,7 @@ svglib==1.5.1
 tinycss2==1.2.1
 tldextract==5.1.1
 tomli==2.0.1
-trove-classifiers==2024.1.9
+trove-classifiers==2024.1.31
 typing_extensions==4.9.0
 uritemplate==4.1.1
 urllib3==1.26.18
