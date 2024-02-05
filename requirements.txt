@@ -81,7 +81,6 @@ trove-classifiers==2024.1.31
 typing_extensions==4.9.0
 uritemplate==4.1.1
 urllib3==1.26.18
-validate==1.0.1
 validate-pyproject==0.13.post1.dev0+gb752273.d20230520
 virtualenv==20.25.0
 webencodings==0.5.1
