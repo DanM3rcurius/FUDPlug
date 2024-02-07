@@ -50,7 +50,7 @@
     overflow-y: auto; /* Enables scrolling for overflow */
     min-height: 512px; /* Adjust to ensure there's always space for the logo */
     padding-top: 12vh;
-    padding: 10px;
+    /*padding: 10px; */
     padding-bottom: 3%; /* Space at the bottom */
     background-color: #121212; /* Or any color that fits your theme */
 
@@ -182,6 +182,6 @@
     }
 
     #message-container {
-        padding-top: 90px; /* Even less space on very small screens */
+        padding-top: 8vh; /* Even less space on very small screens */
     }
 }
