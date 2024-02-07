@@ -114,7 +114,7 @@
     max-width: 90%;
     text-align: left;
     background-color: #333333;
-    color: #FF5500;
+    /*color: #FF5500; /* added color below */
     padding: 5px;
     padding-right: 20px; /* Adds space inside the element, before the text */
     margin: 2px 0;
@@ -125,12 +125,32 @@
     padding-top: 10px; 
     text-align: right;
     background-color: #333333;
-    color: #CCCCCC;
+    /*color: #CCCCCC; * added color below */
     padding: 5px;
     padding-left: 20px; /* Adds space inside the element, before the text */
     margin: 2px 0;
     border-radius: 5px;
 }
+
+.message .name {
+    /* color: #FF9900; /* This color is for the names */
+    font-weight: bold; /* Optional: makes the name bold */
+}
+
+.message .text {
+    color: #CCCCCC; /* This color is for the message text */
+}
+
+.operator-message .name {
+    /* If you want a specific color only for the user's name */
+    color: #00FF00; /* Example green color for the user's name */
+}
+
+.agent-message .name {
+    /* If you want a specific color only for the chatbot's name */
+    color: #FF5500; /* Example blue color for the chatbot's name */
+}
+
 
 /* "is typing" Indicator */
 @keyframes spin {
