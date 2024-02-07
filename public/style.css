@@ -139,9 +139,9 @@
   }
   
   .loader {
-      border: 4px solid #f3f3f3;
+      border: 4px solid #CCCCCC;
       border-radius: 50%;
-      border-top: 4px solid rgba(255, 136, 0, 0.747);
+      border-top: 4px solid #FF5500(255, 136, 0, 0.747);
       width: 20px;
       height: 20px;
       animation: spin 2s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
