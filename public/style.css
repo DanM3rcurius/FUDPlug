@@ -49,7 +49,7 @@
     flex-grow: 1; /* Allows the message container to grow and fill available space */
     overflow-y: auto; /* Enables scrolling for overflow */
     min-height: 512px; /* Adjust to ensure there's always space for the logo */
-    padding-top: 10vh;
+    padding-top: 12vh;
     padding: 10px;
     padding-bottom: 3%; /* Space at the bottom */
     background-color: #121212; /* Or any color that fits your theme */
