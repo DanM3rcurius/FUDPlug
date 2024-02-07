@@ -1,7 +1,6 @@
 #chat-container {
     display: flex; /* Enables Flexbox */
     flex-direction: column; /* Stack message and input containers vertically */
-
     align-items: stretch; /* Vertically aligns children in the middle */
     gap: 10px; /* Optional: Adds space between the textarea and the button */
     width: 90%; /* Use percentage for relative sizing */
@@ -15,12 +14,44 @@
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+#chat-container::before {
+    content: '';
+    background-image: url('https://github.com/DanM3rcurius/FUDPlug/blob/master/public/images/me.png'); /* Replace with your logo's path */
+    background-size: cover;
+    opacity: 0.5; /* Adjust for desired transparency */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px; /* Adjust based on your logo's size */
+    z-index: -1;
+}
+/* Floating Logo button in a corner of the chat container can also work well. This not only brands the interface but could also serve a functional purpose, like opening a help menu or more information about the service.*/
+#chat-container::after {
+    content: '';
+    background-image: url('https://github.com/DanM3rcurius/FUDPlug/blob/master/public/images/me.png'); /* Replace with your logo's path */
+    width: 50px; /* Adjust based on your logo's size */
+    height: 50px; /* Adjust based on your logo's size */
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-size: cover;
+    cursor: pointer;
+    z-index: 10;
+}
+
+
 #message-container {
     flex-grow: 1; /* Allows the message container to grow and fill available space */
     overflow-y: auto; /* Enables scrolling for overflow */
     padding: 10px;
     padding-bottom: 20px; /* Space at the bottom */
-    background-color: #424242; 
+    /* Logo in background */
+    background-image: url('https://github.com/DanM3rcurius/FUDPlug/blob/master/public/images/me.png'); /* Replace with your logo's path */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.1; /* Keep the logo subtle */
 
     /* Additional styling as needed */
 }
