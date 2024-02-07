@@ -7,7 +7,7 @@
     max-width: 800px; /* Maximum width */
     min-width: 330px; /* Minimum width */    
     border: 1px solid #121212;
-    margin: 0 auto; /* Center align */
+    margin: 20px auto; /* Adjusted for visual balance; Center align */
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     position: relative;
@@ -19,15 +19,15 @@
     background-image: url('https://raw.githubusercontent.com/DanM3rcurius/FUDPlug/master/public/images/me.png'); /* Replace with your logo's path */
     background-size: contain; /* This will contain the logo within the bounds of the element */
     background-repeat: no-repeat;
-    background-position: top center;
+    background-position: center top;
     opacity: 0.77; /* Adjust for desired transparency */
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
     transform: translateX(-50%); /* Centers the logo horizontally */
     width: 100%; /* Full width of the container */
-    height: 20%; /* Height relative to the container */
-    max-height: 512px; /* Maximum size of the logo */
+    height: 120px; /* Height relative to the container */
+    /* max-height: 512px; /* Maximum size of the logo */
     z-index: 0;
 }
 /* Floating Logo button in a corner of the chat container can also work well. This not only brands the interface but could also serve a functional purpose, like opening a help menu or more information about the service.
@@ -49,7 +49,7 @@
     flex-grow: 1; /* Allows the message container to grow and fill available space */
     overflow-y: auto; /* Enables scrolling for overflow */
     min-height: 512px; /* Adjust to ensure there's always space for the logo */
-    padding-top: 13%;
+    padding-top: 140px;
     padding: 10px;
     padding-bottom: 3%; /* Space at the bottom */
     background-color: #121212; /* Or any color that fits your theme */
@@ -158,8 +158,7 @@
     }
     
     #chat-container::before {
-        height: 20%; /* Larger percentage for smaller screens */
-        background-size: 80%; /* Scale down the logo */
+        height: 100px; /* Larger percentage for smaller screens */
     }
 
     #chat-input {
@@ -173,20 +172,16 @@
     }
 
     #message-container {
-        min-height: 200px; /* Smaller fixed height for smaller screens */
-        padding-top: 100px; /* Less space on smaller screens */
+        padding-top: 110px; /* Less space on smaller screens */
     }
 }
 
 @media (max-width: 480px) {
     #chat-container::before {
-        height: 30%; /* Even larger percentage for very small screens */
-        max-height: 60px; /* Even smaller maximum size for very small screens */
-        background-size: 70%; /* Scale down the logo even more */
+        height: 80px; /* Even larger percentage for very small screens */
     }
 
     #message-container {
-        min-height: 150px; /* Smaller fixed height for very small screens */
-        padding-top: 80px; /* Even less space on very small screens */
+        padding-top: 90px; /* Even less space on very small screens */
     }
 }
