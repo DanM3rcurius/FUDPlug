@@ -26,19 +26,19 @@
     height: 60px; /* Adjust based on your logo's size */
     z-index: -1;
 }
-/* Floating Logo button in a corner of the chat container can also work well. This not only brands the interface but could also serve a functional purpose, like opening a help menu or more information about the service.*/
+/* Floating Logo button in a corner of the chat container can also work well. This not only brands the interface but could also serve a functional purpose, like opening a help menu or more information about the service.
 #chat-container::after {
     content: '';
-    background-image: url('https://raw.githubusercontent.com/DanM3rcurius/FUDPlug/master/public/images/me.png'); /* Replace with your logo's path */
-    width: 50px; /* Adjust based on your logo's size */
-    height: 50px; /* Adjust based on your logo's size */
+    background-image: url('https://raw.githubusercontent.com/DanM3rcurius/FUDPlug/master/public/images/me.png'); /* Replace with your logo's path 
+    width: 50px; /* Adjust based on your logo's size 
+    height: 50px; /* Adjust based on your logo's size 
     position: absolute;
     bottom: 20px;
     right: 20px;
     background-size: cover;
     cursor: pointer;
-    z-index: 10;
-}
+    z-index: 10; 
+} */
 
 
 #message-container {
