@@ -28,7 +28,7 @@
     width: 100%; /* Full width of the container */
     height: 20%; /* Height relative to the container */
     max-height: 512px; /* Maximum size of the logo */
-    z-index: -2;
+
 }}
 /* Floating Logo button in a corner of the chat container can also work well. This not only brands the interface but could also serve a functional purpose, like opening a help menu or more information about the service.
 #chat-container::after {
