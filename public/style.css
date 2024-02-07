@@ -49,7 +49,7 @@
     flex-grow: 1; /* Allows the message container to grow and fill available space */
     overflow-y: auto; /* Enables scrolling for overflow */
     min-height: 512px; /* Adjust to ensure there's always space for the logo */
-    padding-top: 140px;
+    padding-top: 10vh;
     padding: 10px;
     padding-bottom: 3%; /* Space at the bottom */
     background-color: #121212; /* Or any color that fits your theme */
@@ -149,7 +149,7 @@
       display: block;
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
     #chat-container {
         flex-direction: column; /* Stack the textarea and button vertically on smaller screens */
         width: 100%; /* Full width on smaller screens */
@@ -158,7 +158,7 @@
     }
     
     #chat-container::before {
-        height: 100px; /* Larger percentage for smaller screens */
+        height: 10vh; /* Adjust based on the screen size */
     }
 
     #chat-input {
@@ -172,11 +172,11 @@
     }
 
     #message-container {
-        padding-top: 110px; /* Less space on smaller screens */
+        padding-top: 12vh; /* Adjust so there's enough space below the logo */
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 481px) {
     #chat-container::before {
         height: 80px; /* Even larger percentage for very small screens */
     }
