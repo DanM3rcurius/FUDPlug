@@ -1,28 +1,67 @@
 #chat-container {
     display: flex; /* Enables Flexbox */
     flex-direction: column; /* Stack message and input containers vertically */
-
     align-items: stretch; /* Vertically aligns children in the middle */
     gap: 10px; /* Optional: Adds space between the textarea and the button */
     width: 90%; /* Use percentage for relative sizing */
     max-width: 800px; /* Maximum width */
     min-width: 330px; /* Minimum width */    
-    border: 1px solid #ddd;
-    margin: 0 auto; /* Center align */
+    border: 1px solid rgba(18, 18, 18, 0.677);
+    margin: 20px auto; /* Adjusted for visual balance; Center align */
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     position: relative;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+#chat-container::before {
+    content: '';
+    background-image: url('https://raw.githubusercontent.com/DanM3rcurius/FUDPlug/master/public/images/me.png'); /* Replace with your logo's path */
+    background-size: contain; /* This will contain the logo within the bounds of the element */
+    background-repeat: no-repeat;
+    background-position: center top;
+    opacity: 0.77; /* Adjust for desired transparency */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the logo horizontally */
+    width: 100%; /* Full width of the container */
+    height: 120px; /* Height relative to the container */
+    /* max-height: 512px; /* Maximum size of the logo */
+    z-index: 0;
+}
+/* Floating Logo button in a corner of the chat container can also work well. This not only brands the interface but could also serve a functional purpose, like opening a help menu or more information about the service.
+#chat-container::after {
+    content: '';
+    background-image: url('https://raw.githubusercontent.com/DanM3rcurius/FUDPlug/master/public/images/me.png'); /* Replace with your logo's path 
+    width: 50px; /* Adjust based on your logo's size 
+    height: 50px; /* Adjust based on your logo's size 
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-size: cover;
+    cursor: pointer;
+    z-index: 10; 
+} */
+
+
 #message-container {
     flex-grow: 1; /* Allows the message container to grow and fill available space */
     overflow-y: auto; /* Enables scrolling for overflow */
-    padding: 10px;
-    padding-bottom: 20px; /* Space at the bottom */
-    background-color: #424242; 
+    min-height: 512px; /* Adjust to ensure there's always space for the logo */
+    padding-top: 12vh;
+    /*padding: 10px; */
+    padding-bottom: 3%; /* Space at the bottom */
+    background-color: #121212; /* Or any color that fits your theme */
 
-    /* Additional styling as needed */
+    /* Logo in background 
+    background-image: url('https://raw.githubusercontent.com/DanM3rcurius/FUDPlug/master/public/images/me.png'); /* Replace with your logo's path 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.1; /* Keep the logo subtle 
+    z-index: 1
+    */
 }
 
 #input-container {
@@ -45,7 +84,7 @@
     margin-top: 10px; /* Adds space above the input and button */
     /* margin-right: 5px; */
     /* width: 60%; */
-    border: 1px solid #ccc; /* Example border */
+    border: 1px solid #121212; /* Example border */
     /* border-radius: 4px; /* Rounded corners */ 
     resize: none; /* Disables the resize handle */
     overflow-y: hidden; /* Prevents scroll bar from appearing */
@@ -60,22 +99,22 @@
     width: 7%;
     min-width: 50px; /* Ensure button remains usable */
     height: 32px;
-    background-color: #FF9900;
+    background-color: #FF5500;
     color: white;
     border: none;
     cursor: pointer;
 }
 
 #send-btn:hover {
-    background-color: #19a020;
+    background-color: #00FF00;
 }
 
 .agent-message {
     padding-top: 10px; 
     max-width: 90%;
     text-align: left;
-    background-color: #FF9900;
-    color: white;
+    background-color: #333333;
+    /*color: #FF5500; /* added color below */
     padding: 5px;
     padding-right: 20px; /* Adds space inside the element, before the text */
     margin: 2px 0;
@@ -85,12 +124,33 @@
 .operator-message {
     padding-top: 10px; 
     text-align: right;
-    background-color: #19a020;
+    background-color: #333333;
+    /*color: #CCCCCC; * added color below */
     padding: 5px;
     padding-left: 20px; /* Adds space inside the element, before the text */
     margin: 2px 0;
     border-radius: 5px;
 }
+
+.message .name {
+    /* color: #FF9900; /* This color is for the names */
+    font-weight: bold; /* Optional: makes the name bold */
+}
+
+.message .text {
+    color: #CCCCCC; /* This color is for the message text */
+}
+
+.operator-message .name {
+    /* If you want a specific color only for the user's name */
+    color: #00FF00; /* Example green color for the user's name */
+}
+
+.agent-message .name {
+    /* If you want a specific color only for the chatbot's name */
+    color: #FF5500; /* Example blue color for the chatbot's name */
+}
+
 
 /* "is typing" Indicator */
 @keyframes spin {
@@ -99,9 +159,9 @@
   }
   
   .loader {
-      border: 4px solid #f3f3f3;
+      border: 4px solid #CCCCCC;
       border-radius: 50%;
-      border-top: 4px solid rgba(255, 136, 0, 0.747);
+      border-top: 4px solid rgba(255, 85, 0, 0.747);
       width: 20px;
       height: 20px;
       animation: spin 2s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
@@ -109,20 +169,39 @@
       display: block;
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
     #chat-container {
         flex-direction: column; /* Stack the textarea and button vertically on smaller screens */
         width: 100%; /* Full width on smaller screens */
         min-width: 0; /* Override min-width */
         padding: 5px; /* Less padding on smaller screens */
     }
+    
+    #chat-container::before {
+        height: 10vh; /* Adjust based on the screen size */
+    }
+
     #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
-        width: 100%; /* Full width for smaller screens */
+        width: 100%; 
 
     }
     #send-btn {
         margin-top: 5px; /* Less margin on smaller screens */
-        width: 7%; /* Full width for smaller screens */
+        width: 7%; 
+    }
+
+    #message-container {
+        padding-top: 12vh; /* Adjust so there's enough space below the logo */
+    }
+}
+
+@media (max-width: 481px) {
+    #chat-container::before {
+        height: 80px; /* Even larger percentage for very small screens */
+    }
+
+    #message-container {
+        padding-top: 8vh; /* Even less space on very small screens */
     }
 }
