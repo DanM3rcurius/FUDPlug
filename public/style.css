@@ -52,7 +52,7 @@
     background-position: center;
     background-size: contain;
     opacity: 0.1; /* Keep the logo subtle */
-
+    z-index: 1
     /* Additional styling as needed */
 }
 
