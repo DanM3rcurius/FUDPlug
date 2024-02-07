@@ -6,7 +6,7 @@
     width: 90%; /* Use percentage for relative sizing */
     max-width: 800px; /* Maximum width */
     min-width: 330px; /* Minimum width */    
-    border: 1px solid #121212;
+    border: 1px solid rgba(18, 18, 18, 0.677);
     margin: 20px auto; /* Adjusted for visual balance; Center align */
     padding: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
