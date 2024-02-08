@@ -87,7 +87,7 @@
     border: 1px solid #121212; /* Example border */
     /* border-radius: 4px; /* Rounded corners */ 
     resize: none; /* Disables the resize handle */
-    overflow-y: hidden; /* Prevents scroll bar from appearing */
+    overflow-y: auto; /* Prevents scroll bar from appearing */
     box-sizing: border-box; /* Includes padding in the element's total width and height */
     /* max-width: 600px; /* Maximum width */
     min-width: 120px; /* Minimum width */ 
