@@ -183,7 +183,7 @@
 
     #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
-        width: 100%; 
+        width: 70%; 
 
     }
     #send-btn {
@@ -203,5 +203,9 @@
 
     #message-container {
         padding-top: 8vh; /* Even less space on very small screens */
+    }
+    #chat-input {
+        margin-top: 5px; /* Less margin on smaller screens */
+        width: 60%; 
     }
 }
