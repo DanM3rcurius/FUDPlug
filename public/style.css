@@ -20,13 +20,13 @@
     background-size: contain; /* This will contain the logo within the bounds of the element */
     background-repeat: no-repeat;
     background-position: center top;
-    opacity: 0.77; /* Adjust for desired transparency */
+    opacity: 0.89; /* Adjust for desired transparency */
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%); /* Centers the logo horizontally */
     width: 100%; /* Full width of the container */
-    height: 120px; /* Height relative to the container */
+    height: 12vh; /* Height relative to the container */
     /* max-height: 512px; /* Maximum size of the logo */
     z-index: 0;
 }
