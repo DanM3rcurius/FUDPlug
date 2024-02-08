@@ -5,7 +5,7 @@
     gap: 10px; /* Optional: Adds space between the textarea and the button */
     width: 90%; /* Use percentage for relative sizing */
     max-width: 800px; /* Maximum width */
-    min-width: 330px; /* Minimum width */    
+    min-width: 300px; /* Minimum width */    
     border: 1px solid rgba(18, 18, 18, 0.677);
     margin: 20px auto; /* Adjusted for visual balance; Center align */
     padding: 20px;
@@ -20,13 +20,13 @@
     background-size: contain; /* This will contain the logo within the bounds of the element */
     background-repeat: no-repeat;
     background-position: center top;
-    opacity: 0.77; /* Adjust for desired transparency */
+    opacity: 0.89; /* Adjust for desired transparency */
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%); /* Centers the logo horizontally */
     width: 100%; /* Full width of the container */
-    height: 120px; /* Height relative to the container */
+    height: 12vh; /* Height relative to the container */
     /* max-height: 512px; /* Maximum size of the logo */
     z-index: 0;
 }
@@ -48,7 +48,7 @@
 #message-container {
     flex-grow: 1; /* Allows the message container to grow and fill available space */
     overflow-y: auto; /* Enables scrolling for overflow */
-    min-height: 512px; /* Adjust to ensure there's always space for the logo */
+    min-height: 20vh; /* Adjust to ensure there's always space for the logo */
     padding-top: 12vh;
     /*padding: 10px; */
     padding-bottom: 3%; /* Space at the bottom */
@@ -90,7 +90,7 @@
     overflow-y: hidden; /* Prevents scroll bar from appearing */
     box-sizing: border-box; /* Includes padding in the element's total width and height */
     /* max-width: 600px; /* Maximum width */
-    min-width: 160px; /* Minimum width */ 
+    min-width: 120px; /* Minimum width */ 
     padding: 5px;
 }
 
@@ -172,18 +172,17 @@
   @media (max-width: 769px) {
     #chat-container {
         flex-direction: column; /* Stack the textarea and button vertically on smaller screens */
-        width: 100%; /* Full width on smaller screens */
-        min-width: 0; /* Override min-width */
+        width: 95%; /* Full width on smaller screens */
         padding: 5px; /* Less padding on smaller screens */
     }
     
     #chat-container::before {
-        height: 10vh; /* Adjust based on the screen size */
+        height: 80px; /* Adjust based on the screen size */
     }
 
     #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
-        width: 100%; 
+        width: 70%; 
 
     }
     #send-btn {
@@ -192,16 +191,26 @@
     }
 
     #message-container {
-        padding-top: 12vh; /* Adjust so there's enough space below the logo */
+        padding-top: 8vh; /* Adjust so there's enough space below the logo */
     }
 }
 
 @media (max-width: 481px) {
+    #chat-container {
+        flex-direction: column; /* Stack the textarea and button vertically on smaller screens */
+        width: 90%; /* Full width on smaller screens */
+        padding: 2px; /* Less padding on smaller screens */
+    }
+
     #chat-container::before {
-        height: 80px; /* Even larger percentage for very small screens */
+        height: 40px; 
     }
 
     #message-container {
-        padding-top: 8vh; /* Even less space on very small screens */
+        padding-top: 4vh; /* Even less space on very small screens */
+    }
+    #chat-input {
+        margin-top: 5px; /* Less margin on smaller screens */
+        width: 60%; 
     }
 }
