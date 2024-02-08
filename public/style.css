@@ -192,17 +192,17 @@
     }
 
     #message-container {
-        padding-top: 12vh; /* Adjust so there's enough space below the logo */
+        padding-top: 8vh; /* Adjust so there's enough space below the logo */
     }
 }
 
 @media (max-width: 481px) {
     #chat-container::before {
-        height: 80px; /* Even larger percentage for very small screens */
+        height: 80px; 
     }
 
     #message-container {
-        padding-top: 8vh; /* Even less space on very small screens */
+        padding-top: 4vh; /* Even less space on very small screens */
     }
     #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
