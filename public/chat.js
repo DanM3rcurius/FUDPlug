@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize the textarea size
     resizeTextarea();
-});
 
     // Define the sendMessage function here, using fetch
     async function sendMessage(prompt, sessionId) {
