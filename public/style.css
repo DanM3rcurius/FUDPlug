@@ -178,7 +178,7 @@
     }
     
     #chat-container::before {
-        height: 10vh; /* Adjust based on the screen size */
+        height: 2vh; /* Adjust based on the screen size */
     }
 
     #chat-input {
@@ -198,7 +198,7 @@
 
 @media (max-width: 481px) {
     #chat-container::before {
-        height: 80px; 
+        height: 40px; 
     }
 
     #message-container {
