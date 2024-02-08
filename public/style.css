@@ -16,7 +16,7 @@
 
 #chat-container::before {
     content: '';
-    background-image: url('https://raw.githubusercontent.com/DanM3rcurius/FUDPlug/master/public/images/me.png'); /* Replace with your logo's path */
+    background-image: url('/images/me.png'); /* Replace with your logo's path */
     background-size: contain; /* This will contain the logo within the bounds of the element */
     background-repeat: no-repeat;
     background-position: center top;
