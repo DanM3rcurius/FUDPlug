@@ -172,8 +172,7 @@
   @media (max-width: 769px) {
     #chat-container {
         flex-direction: column; /* Stack the textarea and button vertically on smaller screens */
-        width: 100%; /* Full width on smaller screens */
-        min-width: 0; /* Override min-width */
+        width: 95%; /* Full width on smaller screens */
         padding: 5px; /* Less padding on smaller screens */
     }
     
@@ -197,6 +196,12 @@
 }
 
 @media (max-width: 481px) {
+    #chat-container {
+        flex-direction: column; /* Stack the textarea and button vertically on smaller screens */
+        width: 90%; /* Full width on smaller screens */
+        padding: 2px; /* Less padding on smaller screens */
+    }
+
     #chat-container::before {
         height: 40px; 
     }
