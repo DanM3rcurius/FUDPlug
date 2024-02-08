@@ -48,7 +48,7 @@
 #message-container {
     flex-grow: 1; /* Allows the message container to grow and fill available space */
     overflow-y: auto; /* Enables scrolling for overflow */
-    min-height: 512px; /* Adjust to ensure there's always space for the logo */
+    min-height: 20vh; /* Adjust to ensure there's always space for the logo */
     padding-top: 12vh;
     /*padding: 10px; */
     padding-bottom: 3%; /* Space at the bottom */
@@ -90,7 +90,7 @@
     overflow-y: hidden; /* Prevents scroll bar from appearing */
     box-sizing: border-box; /* Includes padding in the element's total width and height */
     /* max-width: 600px; /* Maximum width */
-    min-width: 160px; /* Minimum width */ 
+    min-width: 120px; /* Minimum width */ 
     padding: 5px;
 }
 
