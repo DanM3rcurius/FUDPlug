@@ -14,6 +14,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    function resizeTextarea() {
+        // This line resets the height allowing the scrollHeight to be accurate
+        chatInput.style.height = 'auto';
+        // Set the height to the scrollHeight plus a little extra space
+        chatInput.style.height = (chatInput.scrollHeight + 2) + 'px';
+    }
+
+    // Listen for input event on textarea
+    chatInput.addEventListener('input', resizeTextarea);
+
+    // Initialize the textarea size
+    resizeTextarea();
+
     // Define the sendMessage function here, using fetch
     async function sendMessage(prompt, sessionId) {
         // Display operator's message
