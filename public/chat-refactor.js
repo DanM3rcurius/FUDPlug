@@ -1,4 +1,24 @@
+function initializeEventListeners() {
+    document.getElementById('chat-input').addEventListener('keypress', handleEnterKeyPress);
+    document.getElementById('chat-input').addEventListener('blur', adjustScreenView);
+}
+// Enter sends message
+function handleEnterKeyPress(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById('send-btn').click();
+    }
+}
+// Focus on Send button when leaving keyboard view on mobile
+function adjustScreenView() {
+    setTimeout(function() {
+        document.getElementById('send-btn').scrollIntoView({behavior: 'smooth', block: 'end'});
+    }, 300);
+}
+// DOM
 document.addEventListener('DOMContentLoaded', function () {
+    // Initialize event listeners from above
+    initializeEventListeners();
     const sendButton = document.getElementById('send-btn');
     const chatInput = document.getElementById('chat-input');
     const messageContainer = document.getElementById('message-container');
@@ -20,20 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Set the height to the scrollHeight plus a little extra space
         chatInput.style.height = (chatInput.scrollHeight + 2) + 'px';
     }
-    // Send with Enter 
-    document.getElementById('chat-input').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) { // Check if Enter key is pressed without the Shift key
-            e.preventDefault(); // Prevent the default action to avoid breaking to a new line
-            document.getElementById('send-btn').click(); // Programmatically click the send button
-        }
-    });
-    // Autofocus send button for mobile
-    document.getElementById('chat-input').addEventListener('blur', function() {
-        setTimeout(function() {
-            document.getElementById('send-btn').scrollIntoView({behavior: 'smooth', block: 'end'});
-        }, 300);
-    });
-    
+
     // Listen for input event on textarea
     chatInput.addEventListener('input', resizeTextarea);
 
@@ -69,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 addMessageToChatBox('FUDPlug', botResponse, 'agent');
             } else {
                 console.error('Error sending message:', response.status);
-                addMessageToChatBox('System', 'Error sending message.', 'agent');
+                addMessageToChatBox('System', 'My wires got crossed, please try again.', 'agent');
             }
         } catch (error) {
             console.error('Error sending message:', error);
