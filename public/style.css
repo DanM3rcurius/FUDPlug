@@ -70,6 +70,7 @@
 
 #input-container {
     display: flex; /* Enables Flexbox for the input area */
+    width: 100%;
     align-items: center; /* Aligns the text area and send button vertically */
     gap: 10px; /* Space between the text area and send button */
     margin-top: 20px; /* Space between message container and input container */
@@ -101,10 +102,13 @@
 }
 
 #send-btn {
+    flex-grow: 1; 
+    flex: none;
     margin-top: 10px; /* Adds space above the input and button */
-    width: 7%;
+    width: auto;
     min-width: 50px; /* Ensure button remains usable */
     height: 32px;
+    padding: 10px 20px; /* Adjust padding for better tap target on mobile */
     background-color: #FF5500;
     color: white;
     border: none;
@@ -178,7 +182,8 @@
   @media (max-width: 769px) {
     #chat-container {
         flex-direction: column; /* Stack the textarea and button vertically on smaller screens */
-        width: 95%; /* Full width on smaller screens */
+        width: 100%; /* Full width on smaller screens */
+        margin-top: 0; /* Removes additional margin at the top */
         padding: 5px; /* Less padding on smaller screens */
     }
     
@@ -188,12 +193,12 @@
 
     #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
-        width: 70%; 
+        width: calc(100% - 80px); /* Adjusts width to leave space for the button */
 
     }
     #send-btn {
         margin-top: 5px; /* Less margin on smaller screens */
-        width: 7%; 
+        width: 70px; 
     }
 
     #message-container {
@@ -217,6 +222,6 @@
     }
     #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
-        width: 60%; 
+        width: calc(100% - 80px); /* Further adjusts for very small screens */
     }
 }
