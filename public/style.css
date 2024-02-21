@@ -34,6 +34,43 @@
     border-radius: 6px; /* Adjust the value to your preference */
 
 }
+#chat-header {
+    position: relative;
+    width: 100%;
+    height: 12vh; /* Adjust based on your needs */
+    display: flex;
+    justify-content: center; /* Center logo */
+    align-items: center;
+}
+
+#logo-container {
+    background-image: url('/images/me.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.89;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    z-index: 0;
+}
+
+#export-chat-btn {
+    position: absolute;
+    right: 10px; /* Adjust based on your needs */
+    padding: 5px 10px;
+    background-color: #FF5500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1; /* Ensure button is clickable */
+}
+
+#export-chat-btn:hover {
+    background-color: #DD4400;
+}
+
 /* Floating Logo button in a corner of the chat container can also work well. This not only brands the interface but could also serve a functional purpose, like opening a help menu or more information about the service.
 #chat-container::after {
     content: '';
