@@ -1,6 +1,8 @@
 const express = require('express');
 const axios = require('axios');
 const { v4: uuidv4 } = require('uuid');
+const chatSessions = {};
+
 require('dotenv').config();
 
 const app = express();
@@ -27,6 +29,16 @@ app.get('/api/session-id', (req, res) => {
 // Endpoint to handle chat messages
 app.post('/api/chat', async (req, res) => {
     const { prompt, sessionId } = req.body;
+    // Initialize session if it doesn't exist
+    if (!chatSessions[sessionId]) {
+        chatSessions[sessionId] = [];
+    }
+
+    chatSessions[sessionId].push({
+        message: sanitizeMessage(prompt),
+        timestamp: new Date()
+    });
+    
     try {
         const apiUrl = `${process.env.MAGICK_API_URL}/api`;
         console.log('Making request to:', apiUrl); // Log the API URL
@@ -54,6 +66,27 @@ app.post('/api/chat', async (req, res) => {
         console.error('Error processing API request:', error);
         res.status(500).send('Internal Server Error');
     }
+});
+// Sanitization
+const { JSDOM } = require('jsdom');
+const createDOMPurify = require('dompurify');
+const { window } = new JSDOM('');
+const DOMPurify = createDOMPurify(window);
+
+function sanitizeMessage(message) {
+    return DOMPurify.sanitize(message);
+}
+
+
+// Chat export feature
+app.get('/api/export/:sessionId', (req, res) => {
+    const { sessionId } = req.params;
+    const chatHistory = chatSessions[sessionId] || [];
+
+    // Convert chat history to a downloadable format, e.g., JSON
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', 'attachment; filename=chat_history.json');
+    res.send(JSON.stringify(chatHistory, null, 2));
 });
 
 
