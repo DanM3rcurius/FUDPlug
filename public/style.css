@@ -16,24 +16,24 @@
 
 }
 
+/*
 #chat-container::before {
     content: '';
-    background-image: url('/images/me.png'); /* Replace with your logo's path */
-    background-size: contain; /* This will contain the logo within the bounds of the element */
+    background-image: url('/images/me.png'); /* Replace with your logo's path 
+    background-size: contain; /* This will contain the logo within the bounds of the element 
     background-repeat: no-repeat;
     background-position: center top;
-    opacity: 0.89; /* Adjust for desired transparency */
+    opacity: 0.89; /* Adjust for desired transparency 
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translateX(-50%); /* Centers the logo horizontally */
-    width: 100%; /* Full width of the container */
+    transform: translateX(-50%); /* Centers the logo horizontally 
+    width: 100%; /* Full width of the container 
     height: 12vh; /* Height relative to the container */
-    /* max-height: 512px; /* Maximum size of the logo */
+    /* max-height: 512px; /* Maximum size of the logo 
     z-index: 0;
-    border-radius: 6px; /* Adjust the value to your preference */
-
-}
+    border-radius: 6px; /* Adjust the value to your preference 
+}*/
 #chat-header {
     position: relative;
     width: 100%;
@@ -50,7 +50,7 @@
     background-position: center;
     opacity: 0.89;
     width: 100%;
-    height: 100%;
+    height: 12vh;
     border-radius: 6px;
     z-index: 0;
 }
