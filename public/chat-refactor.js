@@ -15,20 +15,23 @@ function adjustScreenView() {
         document.getElementById('send-btn').scrollIntoView({behavior: 'smooth', block: 'end'});
     }, 300);
 }
+
+let globalSessionId = null; // Global variable to store the session ID
+
 // DOM
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
+    globalSessionId = await fetchSessionId();   // Fetch and store session ID from the server
     // Initialize event listeners from above
     initializeEventListeners();
     const sendButton = document.getElementById('send-btn');
     const chatInput = document.getElementById('chat-input');
     const messageContainer = document.getElementById('message-container');
-    let sessionId = Date.now(); // Example session ID
 
     // Function to handle sending messages
     sendButton.addEventListener('click', function() {
         let messageText = chatInput.value.trim();
         if (messageText) {
-            sendMessage(messageText, sessionId);
+            sendMessage(messageText, globalSessionId);
             chatInput.value = '';
             chatInput.style.height = 'auto'; // Reset the text area height
         }
@@ -37,8 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const exportBtn = document.getElementById('export-chat-btn');
 
     exportBtn.addEventListener('click', function() {
-        const sessionId = /* Retrieve the current session ID somehow */
-        window.open(`/api/export/${sessionId}`, '_blank');
+        if (globalSessionId) {
+            window.open(`/api/export/${globalSessionId}`, '_blank'); // retrieve current sessionID
+        } else {
+            console.error('Session ID is not defined or not fetched yet.');
+            // Optionally, provide user feedback here
+        }
     });
 
     function resizeTextarea() {
@@ -55,7 +62,11 @@ document.addEventListener('DOMContentLoaded', function () {
     resizeTextarea();
 
     // Define the sendMessage function here, using fetch
-    async function sendMessage(prompt, sessionId) {
+    async function sendMessage(prompt) {
+        if (!globalSessionId) {
+            console.error('Session ID is not available.');
+            return; // Exit the function if sessionId is not available
+        }
         // Display operator's message
         addMessageToChatBox('You', prompt, 'operator');
 
@@ -70,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ prompt, sessionId }),
+                body: JSON.stringify({ prompt, sessionId: globalSessionId }),
             });
 
             // Remove loader once the response is received
@@ -115,3 +126,19 @@ document.addEventListener('DOMContentLoaded', function () {
         messageContainer.scrollTop = messageContainer.scrollHeight;
     }
 });
+
+async function fetchSessionId() {
+    try {
+        const response = await fetch('/api/session-id');
+        if (response.ok) {
+            const data = await response.json();
+            return data.sessionId; // Use this session ID for chat and export
+        } else {
+            console.error('Failed to fetch session ID:', response.statusText);
+            return null;
+        }
+    } catch (error) {
+        console.error('Error fetching session ID:', error);
+        return null;
+    }
+}
