@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const exportBtn = document.getElementById('export-chat-btn');
 
     exportBtn.addEventListener('click', function() {
-        const sessionId = /* Retrieve the current session ID somehow */;
+        const sessionId = /* Retrieve the current session ID somehow */
         window.open(`/api/export/${sessionId}`, '_blank');
     });
-    
+
     function resizeTextarea() {
         // This line resets the height allowing the scrollHeight to be accurate
         chatInput.style.height = 'auto';
