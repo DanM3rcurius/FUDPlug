@@ -50,7 +50,7 @@
     background-position: center;
     opacity: 0.89;
     width: 100%;
-    height: 12vh;
+    height: 8vh;
     border-radius: 6px;
     z-index: 0;
 }
@@ -63,7 +63,7 @@
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     z-index: 1; /* Ensure button is clickable */
 }
 
@@ -241,6 +241,10 @@
     #message-container {
         padding-top: 8vh; /* Adjust so there's enough space below the logo */
     }
+
+    #logo-container {
+        height: 4vh;
+    }
 }
 
 @media (max-width: 481px) {
@@ -249,13 +253,16 @@
         width: 90%; /* Full width on smaller screens */
         padding: 2px; /* Less padding on smaller screens */
     }
+    #logo-container {
+        height: 3vh;
+    }
 
     #chat-container::before {
         height: 40px; 
     }
 
     #message-container {
-        padding-top: 4vh; /* Even less space on very small screens */
+        padding-top: 5vh; /* Even less space on very small screens */
     }
     #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
