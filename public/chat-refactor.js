@@ -40,12 +40,14 @@ document.addEventListener('DOMContentLoaded', async function () {
     const exportBtn = document.getElementById('export-chat-btn');
 
     exportBtn.addEventListener('click', function() {
-        if (globalSessionId) {
-            window.open(`/api/export/${globalSessionId}`, '_blank'); // retrieve current sessionID
-        } else {
-            console.error('Session ID is not defined or not fetched yet.');
-            // Optionally, provide user feedback here
-        }
+        downloadChatHistory(chatSessionMessages); // Pass the current chat session messages
+
+      //  if (globalSessionId) {
+      //      window.open(`/api/export/${globalSessionId}`, '_blank'); // retrieve current sessionID
+      //  } else {
+      //      console.error('Session ID is not defined or not fetched yet.');
+      //      // Optionally, provide user feedback here
+      //  }
     });
 
     function resizeTextarea() {
