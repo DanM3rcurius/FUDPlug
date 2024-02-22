@@ -141,3 +141,18 @@ async function fetchSessionId() {
         return null;
     }
 }
+
+function downloadChatHistory(chatHistory) {
+    const chatHistoryStr = JSON.stringify(chatHistory, null, 2);
+    const blob = new Blob([chatHistoryStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    
+    // Create a link and trigger the download
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'chat_history.json';
+    document.body.appendChild(a); // Required for Firefox
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url); // Clean up
+}
