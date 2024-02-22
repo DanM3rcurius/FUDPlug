@@ -239,11 +239,11 @@
     }
 
     #message-container {
-        padding-top: 8vh; /* Adjust so there's enough space below the logo */
+        padding-top: 5vh; /* Adjust so there's enough space below the logo */
     }
 
     #logo-container {
-        height: 4vh;
+        height: 10vh;
     }
 }
 
@@ -254,7 +254,7 @@
         padding: 2px; /* Less padding on smaller screens */
     }
     #logo-container {
-        height: 3vh;
+        height: 10vh;
     }
 
     #chat-container::before {
@@ -262,7 +262,7 @@
     }
 
     #message-container {
-        padding-top: 5vh; /* Even less space on very small screens */
+        padding-top: 2vh; /* Even less space on very small screens */
     }
     #chat-input {
         margin-top: 5px; /* Less margin on smaller screens */
