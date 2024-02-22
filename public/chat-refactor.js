@@ -49,17 +49,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
     function resizeTextarea() {
-        // This line resets the height allowing the scrollHeight to be accurate
-        chatInput.style.height = 'auto';
-        // Set the height to the scrollHeight plus a little extra space
-        chatInput.style.height = (chatInput.scrollHeight + 2) + 'px';
+        chatInput.style.height = 'auto';  // This line resets the height allowing the scrollHeight to be accurate
+        chatInput.style.height = (chatInput.scrollHeight + 2) + 'px'; // Set the height to scrollHeight plus a little extra space
     }
 
-    // Listen for input event on textarea
-    chatInput.addEventListener('input', resizeTextarea);
+    chatInput.addEventListener('input', resizeTextarea);  // Listen for input event on textarea
 
-    // Initialize the textarea size
-    resizeTextarea();
+    resizeTextarea();  // Initialize the textarea size
+
+    let chatSessionMessages = []; // This will store all messages for the current session
 
     // Define the sendMessage function here, using fetch
     async function sendMessage(prompt) {
@@ -67,8 +65,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             console.error('Session ID is not available.');
             return; // Exit the function if sessionId is not available
         }
-        // Display operator's message
-        addMessageToChatBox('You', prompt, 'operator');
+        addMessageToChatBox('You', prompt, 'operator');  // Display operator's message
+        chatSessionMessages.push({ sender: 'You', message: prompt, timestamp: new Date().toISOString() });
 
         // Insert loader to indicate the bot is "typing"
         const loader = document.createElement('div');
@@ -92,6 +90,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const botResponse = data.result["Output - REST API (Response)"];
                 // Display agent's response
                 addMessageToChatBox('FUDPlug', botResponse, 'agent');
+                chatSessionMessages.push({ sender: 'FUDPlug', message: botResponse, timestamp: new Date().toISOString() });
             } else {
                 console.error('Error sending message:', response.status);
                 addMessageToChatBox('System', 'My wires got crossed, please try again.', 'agent');
