@@ -82,19 +82,26 @@ document.addEventListener('DOMContentLoaded', async function () {
                 body: JSON.stringify({ prompt, sessionId: globalSessionId }),
             });
 
+            console.log("Sending message to bot:", prompt); // log for debugging
+
             // Remove loader once the response is received
             messageContainer.removeChild(loader);
 
             if (response.ok) {
                 const data = await response.json();
+                console.log (data)
                 const botResponse = data.result["Output - REST API (Response)"];
+                console.log("Received bot response:", botResponse);
+
                 // Display agent's response
                 addMessageToChatBox('FUDPlug', botResponse, 'agent');
                 chatSessionMessages.push({ sender: 'FUDPlug', message: botResponse, timestamp: new Date().toISOString() });
+                console.log("Bot response stored in chatSessionMessages");
             } else {
                 console.error('Error sending message:', response.status);
                 addMessageToChatBox('System', 'My wires got crossed, please try again.', 'agent');
             }
+            console.log("Updated chatSessionMessages:", chatSessionMessages);
         } catch (error) {
             console.error('Error sending message:', error);
             addMessageToChatBox('System', 'Error sending message.', 'agent');
