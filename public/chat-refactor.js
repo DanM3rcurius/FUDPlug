@@ -150,6 +150,7 @@ async function fetchSessionId() {
 }
 
 function downloadChatHistory(chatHistory) {
+    console.log('Downloading chat history:', chatHistory); // debugging purposes
     const chatHistoryStr = JSON.stringify(chatHistory, null, 2);
     const blob = new Blob([chatHistoryStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
