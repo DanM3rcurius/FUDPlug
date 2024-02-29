@@ -50,7 +50,7 @@
     background-position: center;
     opacity: 0.89;
     width: 100%;
-    height: 8vh;
+    height: 12vh;
     border-radius: 6px;
     z-index: 0;
 }
@@ -94,6 +94,9 @@
     /*padding: 10px; */
     padding-bottom: 3%; /* Space at the bottom */
     background-color: #121212; /* Or any color that fits your theme */
+    border-radius: 7px;
+    border-style: inset;
+    border-color: rgba rgb(255, 85, 0, 0.77);
 
     /* Logo in background 
     background-image: url('https://raw.githubusercontent.com/DanM3rcurius/FUDPlug/master/public/images/me.png'); /* Replace with your logo's path 
@@ -146,14 +149,14 @@
     min-width: 50px; /* Ensure button remains usable */
     height: 32px;
     padding: 10px 20px; /* Adjust padding for better tap target on mobile */
-    background-color: #FF5500;
+    background-color: rgb(255, 85, 0);
     color: white;
     border: none;
     cursor: pointer;
 }
 
 #send-btn:hover {
-    background-color: #00FF00;
+    background-color: #00ff00;
 }
 
 .agent-message {
@@ -190,12 +193,12 @@
 
 .operator-message .name {
     /* If you want a specific color only for the user's name */
-    color: #00FF00; /* Example green color for the user's name */
+    color: #00FF00; 
 }
 
 .agent-message .name {
     /* If you want a specific color only for the chatbot's name */
-    color: #FF5500; /* Example blue color for the chatbot's name */
+    color: #FF5500; 
 }
 
 
