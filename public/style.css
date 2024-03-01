@@ -90,9 +90,9 @@
     flex-grow: 1; /* Allows the message container to grow and fill available space */
     overflow-y: auto; /* Enables scrolling for overflow */
     min-height: 20vh; /* Adjust to ensure there's always space for the logo */
-    padding-top: 12vh;
+    padding-top: 3vh;
     /*padding: 10px; */
-    padding-bottom: 3%; /* Space at the bottom */
+    padding-bottom: 3vh; /* Space at the bottom */
     background-color: #121212; /* Or any color that fits your theme */
     border-radius: 7px;
     border-style: inset;
@@ -156,7 +156,7 @@
 }
 
 #send-btn:hover {
-    background-color: #00ff00;
+    background-color: #DD4400;
 }
 
 .agent-message {
@@ -242,7 +242,7 @@
     }
 
     #message-container {
-        padding-top: 5vh; /* Adjust so there's enough space below the logo */
+        padding-top: 2vh; /* Adjust so there's enough space below the logo */
     }
 
     #logo-container {
