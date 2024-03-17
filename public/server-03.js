@@ -89,6 +89,15 @@ app.get('/api/export/:sessionId', (req, res) => {
     res.send(JSON.stringify(chatHistory, null, 2));
 });
 
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    // Log more details about the error
+    if (err.data) {
+      console.error('Error data:', err.data);
+    }
+    res.status(500).send('Internal Server Error');
+  });
+  
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
